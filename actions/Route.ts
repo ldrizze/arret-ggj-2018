@@ -25,7 +25,7 @@ export class Route extends Action{
 
  		let drv:Driver = this.MainDriver;
 
- 		this.log.dbg("Routing to",this.Users.length,"users")
+ 		this.log.dbg("Routing to",this.Users.length-1,"users")
 
  		this.Users.foreach((element, index) => {
  			if(element.client_id != payload.user.client_id){
