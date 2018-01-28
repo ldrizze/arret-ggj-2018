@@ -33,7 +33,7 @@ var Route = (function (_super) {
         this.log.inf("Payload", payload);
         this.log.dbg("Routing route");
         var drv = this.MainDriver;
-        this.log.dbg("Routing to", this.Users.length, "users");
+        this.log.dbg("Routing to", this.Users.length - 1, "users");
         this.Users.foreach(function (element, index) {
             if (element.client_id != payload.user.client_id) {
                 var pl = new Payload_1.Payload(element, payload.data);
