@@ -6,6 +6,9 @@
   "scripts": {
     "start": "node server"
   },
+  "engines": {
+    "node": "8.9.3"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://bitbucket.org/luisfedrizze/kaymada-server.git"
