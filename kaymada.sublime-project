@@ -1,0 +1,27 @@
+{
+	"build_systems":
+	[
+		{
+			"name": "[Release] Kaymada Server",
+			"shell_cmd": "gulp compile-release"
+		},
+		{
+			"name": "[Compile] Kaymada Server",
+			"shell_cmd": "tsc"
+		},
+		{
+			"name": "[Tests] Kaymada Server",
+			"shell_cmd": "gulp compile-tests"
+		}
+	],
+	"folders":
+	[
+		{
+			"path": "."
+		}
+	],
+	"settings":
+	{
+		"tab_size": 4
+	}
+}
