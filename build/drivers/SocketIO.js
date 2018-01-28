@@ -22,13 +22,14 @@ var SocketIO = (function (_super) {
         return _this;
     }
     SocketIO.prototype.initialize = function () {
-        this.app = require('http').createServer(this.handleHTTPService);
+        this.app = require('http').createServer(this.handleHTTPService.bind(this));
         this.io = socketIO(this.app);
         this.io.on("connection", this.onConnect.bind(this));
         this.sockets = new Collection_1.Collection('id');
         __io_instance = this;
     };
     SocketIO.prototype.listen = function (port) {
+        this.port = port;
         this.app.listen(port);
     };
     SocketIO.prototype.send = function (payload) {
@@ -67,7 +68,7 @@ var SocketIO = (function (_super) {
     };
     SocketIO.prototype.handleHTTPService = function (req, res) {
         res.writeHead(200);
-        res.end("Everything is fine");
+        res.end(this.port.toString());
     };
     return SocketIO;
 }(Driver_1.Driver));

@@ -10,9 +10,10 @@ export class SocketIO extends Driver{
 	private io:any;
 	private sockets:Collection<any>;
 	private log:Log = new Log('Driver.SocketIO');
+	public port:number;
 
 	public initialize():void{
-		this.app = require('http').createServer(this.handleHTTPService);
+		this.app = require('http').createServer(this.handleHTTPService.bind(this));
 		this.io = socketIO(this.app);
 
 		// SocketIO events
@@ -24,6 +25,7 @@ export class SocketIO extends Driver{
 	}
 
 	public listen(port:number):void{
+		this.port = port;
 		this.app.listen(port)
 	}
 
@@ -74,7 +76,7 @@ export class SocketIO extends Driver{
 
 	private handleHTTPService(req: any, res: any):void{
 		res.writeHead(200);
-		res.end("Everything is fine");
+		res.end(this.port.toString());
 	}
 }
 
