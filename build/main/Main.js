@@ -40,7 +40,7 @@ Observers_1.Observers.foreach(function (obj, index) {
 });
 var _users_id = 1;
 log.inf("Initializing drivers");
-var port_to_listen = 8000;
+var port_to_listen = parseInt(process.env.PORT) || 8000;
 function onConnect(client_id) {
     log.inf("Registering new connection: ", client_id);
     var _user = new User_1.User(++_users_id, client_id);

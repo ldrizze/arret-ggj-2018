@@ -10,6 +10,10 @@ import {Event} from "../classes/Event"
 import {Observer} from "../classes/Observer"
 import {Log,Logger} from "../classes/Logger"
 
+export interface ProcessEnv {
+    [key: string]: string | undefined;
+}
+
 /* Init log */
 Logger.configure(Configuration.log.console, Configuration.log.on_socket, Configuration.log.save_on_file, Configuration.log.folder);
 let log = new Log("Main")
@@ -58,7 +62,7 @@ let _users_id = 1;
 
 /* Initialize drivers */
 log.inf("Initializing drivers")
-let port_to_listen:number = 8000;
+let port_to_listen:number = parseInt(process.env.PORT) || 8000;
 
 /**
 * @function

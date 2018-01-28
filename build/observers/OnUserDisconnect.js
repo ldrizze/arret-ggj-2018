@@ -16,12 +16,11 @@ var OnUserDisconnect = (function (_super) {
     __extends(OnUserDisconnect, _super);
     function OnUserDisconnect() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this._log = new Logger_1.Log("Observer.OnUserDisconnect");
-        _this.log = _this._log.log.bind(_this._log);
+        _this.log = new Logger_1.Log("Observer.OnUserDisconnect");
         return _this;
     }
     OnUserDisconnect.prototype.run = function (attachs) {
-        this.log(Logger_1.Log.DBG, "Anyone has been disconnected from the server...");
+        this.log.dbg("Anyone has been disconnected from the server...");
     };
     return OnUserDisconnect;
 }(Observer_1.Observer));
