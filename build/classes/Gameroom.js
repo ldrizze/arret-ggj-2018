@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+var Collection_1 = require("./Collection");
 var Gameroom = (function () {
     function Gameroom(id, name, password, maxPlayers) {
         if (maxPlayers === void 0) { maxPlayers = 10; }
@@ -7,8 +8,10 @@ var Gameroom = (function () {
         this.name = name;
         this.password = password;
         this.maxPlayers = maxPlayers;
+        this.players = new Collection_1.Collection("name");
     }
-    Gameroom.prototype.addPlayer = function () {
+    Gameroom.prototype.addPlayer = function (player) {
+        this.players.add(player);
     };
     Gameroom.prototype.removePlayer = function () {
     };

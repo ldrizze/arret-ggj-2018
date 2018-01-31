@@ -58,7 +58,10 @@ function onReceive(client_id, data) {
         log.inf("Making Payload: ", client_id);
         var _payload = new Payload_1.Payload(_user, data, true);
         log.inf("Routing to action: ", data.action);
-        Actions_1.Actions.find(data.action).run(_payload);
+        var reply = Actions_1.Actions.find(data.action).run(_payload);
+        if (reply) {
+            main_driver.send(reply);
+        }
         return true;
     }
     else {

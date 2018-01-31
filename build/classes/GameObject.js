@@ -39,6 +39,12 @@ var GameObject = (function () {
             return null;
         }
     };
+    GameObject.prototype.setPosition = function (position) {
+        this.transform.position = position;
+    };
+    GameObject.prototype.getPosition = function () {
+        return this.transform.position;
+    };
     return GameObject;
 }());
 exports.GameObject = GameObject;

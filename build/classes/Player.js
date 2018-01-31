@@ -16,7 +16,7 @@ var Player = (function (_super) {
     __extends(Player, _super);
     function Player() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.id = -1;
+        _this._id = -1;
         _this.guest = true;
         _this.input = {
             position: new Vector3_1.Vector3,
@@ -28,6 +28,13 @@ var Player = (function (_super) {
     Object.defineProperty(Player.prototype, "gameroom", {
         get: function () {
             return this._gameroom;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Player.prototype, "id", {
+        get: function () {
+            return this._id;
         },
         enumerable: true,
         configurable: true
