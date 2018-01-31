@@ -16,60 +16,13 @@
 	"buffers":
 	[
 		{
-			"contents": "wifi217\neifa6ooW",
+			"contents": "",
 			"settings":
 			{
-				"buffer_size": 16,
+				"buffer_size": 0,
 				"line_ending": "Unix",
-				"name": "wifi217"
-			}
-		},
-		{
-			"file": "/home/drizze/ggj2018/BugigaSock.java",
-			"settings":
-			{
-				"buffer_size": 2005,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/home/drizze/ggj2018/Server.java",
-			"settings":
-			{
-				"buffer_size": 2459,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"contents": "package com.bugiga.arret;\n \nimport android.os.AsyncTask;\nimport android.widget.TextView;\n \nimport java.io.ByteArrayOutputStream;\nimport java.io.IOException;\nimport java.io.InputStream;\nimport java.net.Socket;\nimport java.net.UnknownHostException;\n \npublic class Client{\n\n    String dstAddress;\n    int dstPort;\n    String response = \"\";\n \n    Client(String addr, int port) {\n        dstAddress = addr;\n        dstPort = port;\n    }\n \n    @Override\n    protected void run() {\n \n        Socket socket = null;\n \n        try {\n            socket = new Socket(dstAddress, dstPort);\n \n            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream(\n                    1024);\n            byte[] buffer = new byte[1024];\n \n            int bytesRead;\n            InputStream inputStream = socket.getInputStream();\n \n\t\t\t/*\n             * notice: inputStream.read() will block if no data return\n\t\t\t */\n            while ((bytesRead = inputStream.read(buffer)) != -1) {\n                byteArrayOutputStream.write(buffer, 0, bytesRead);\n                response += byteArrayOutputStream.toString(\"UTF-8\");\n            }\n \n        } catch (UnknownHostException e) {\n            // TODO Auto-generated catch block\n            e.printStackTrace();\n            response = \"UnknownHostException: \" + e.toString();\n        } catch (IOException e) {\n            // TODO Auto-generated catch block\n            e.printStackTrace();\n            response = \"IOException: \" + e.toString();\n        } finally {\n            if (socket != null) {\n                try {\n                    socket.close();\n                } catch (IOException e) {\n                    // TODO Auto-generated catch block\n                    e.printStackTrace();\n                }\n            }\n        }\n        return response;\n    }\n}",
-			"file": "/home/drizze/ggj2018/Client.java",
-			"file_size": 1814,
-			"file_write_time": 131615610992591806,
-			"settings":
-			{
-				"buffer_size": 1812,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"contents": "Um alien faz um pouso forçado no planeta ARRET e tenta roubar suas fontes de energias para  conseguir voltar ao seu planeta. Mas, ARRET parece um labirinto e essa tarefa pode durar mais do que o tempo de sua respiração. Para complicar sua vida, ele não esperava que campos de transmissão de energia estivessem sendo construídos e pudessem destruir o seu corpo.\n\n\nUm alien faz um pouso forçado no planeta ARRET e tenta roubar suas fontes de energias para  conseguir voltar ao seu planeta, mas não espereva ter de enfrentar as defesas desse planeta. Para que o alien possa sair de ARRET, será necessário encontrar a rota perfeita e não seja detectado pelos sensores para que as torres de transmissão não o cerque. Um jogo de 3 jogadores que possui o VR como a atração principal como alien, e outros dois dispositivos smarthphone que defenderão ARRET posicionando suas torres.  Encontre a rota, não seja detectado, obtenha a fonte de energia e fuja de ARRET!\n\n\nUm invasor pousou em ARRET. Defenda sua terra colocando transmissores e evite que o invasor obtenha fontes de energia e volte para a nave.",
-			"settings":
-			{
-				"buffer_size": 1096,
-				"line_ending": "Unix",
-				"name": "Um alien faz um pouso forçado no planeta ARRET e t"
-			}
-		},
-		{
-			"contents": "Requisitos:\n3 Smartphones Samsung Galaxy S6 ou superior\nVR para Smartphone (Samsung Gear)\n\nComo jogar:\nTodos os 3 Smartphones deverão estar conectados na mesma rede\nO Smartphone que rodará o aplicativo VR será o servidor, nele será exibido um IP qual deverá ser inserido nos outros 2 Smartphones dos jogadores para iniciar a sessão do jogo\n\nApós inserir o endereço de IP do VR nos outros Smartphones, será necessário escolher o jogador (1 ou 2) e pressionar o botão \"Jogar\", então, aguardar o jogo iniciar.",
-			"settings":
-			{
-				"buffer_size": 506,
-				"line_ending": "Unix",
-				"name": "Requisitos:"
+				"name": "Find References",
+				"scratch": true
 			}
 		}
 	],
@@ -80,10 +33,14 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 244.0,
-		"last_filter": "java",
+		"height": 318.0,
+		"last_filter": "types",
 		"selected_items":
 		[
+			[
+				"types",
+				"Set Syntax: TypeScript"
+			],
 			[
 				"java",
 				"Set Syntax: Java"
@@ -97,7 +54,7 @@
 				"Package Control: Install Package"
 			]
 		],
-		"width": 497.0
+		"width": 515.0
 	},
 	"console":
 	{
@@ -117,12 +74,25 @@
 	},
 	"expanded_folders":
 	[
-		"/home/drizze/ggj2018",
-		"/home/drizze/ggj2018/actions"
+		"/home/drizze/arretggj2018",
+		"/home/drizze/arretggj2018/actions",
+		"/home/drizze/arretggj2018/classes",
+		"/home/drizze/arretggj2018/main"
 	],
 	"file_history":
 	[
+		"/home/drizze/arretggj2018/classes/Action.ts",
+		"/home/drizze/arretggj2018/actions/CreateRoom.ts",
+		"/home/drizze/arretggj2018/classes/Gameroom.ts",
+		"/home/drizze/arretggj2018/classes/Player.ts",
+		"/run/media/drizze/Backup/Projetos/SoldatSniff/sdtdump.js",
+		"/home/drizze/arretggj2018/main/Main.ts",
+		"/home/drizze/arretggj2018/actions/Route.ts",
+		"/home/drizze/arretggj2018/classes/GameObject.ts",
+		"/home/drizze/arretggj2018/main/Actions.ts",
 		"/home/drizze/ggj2018/Client.java",
+		"/home/drizze/ggj2018/Server.java",
+		"/home/drizze/ggj2018/BugigaSock.java",
 		"/home/drizze/kaymada-server/classes/Action.ts",
 		"/home/drizze/kaymada-server/classes/User.ts",
 		"/home/drizze/kaymada-server/main/Main.ts",
@@ -138,7 +108,7 @@
 	],
 	"find":
 	{
-		"height": 40.0
+		"height": 26.0
 	},
 	"find_in_files":
 	{
@@ -152,6 +122,8 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"position",
+			"transform",
 			"boolean",
 			"activity",
 			"activity.runOnUiThread(new Runnable() {\n\t\t\t\t\t\t@Override\n\t\t\t\t\t\tpublic void run() {\n\t\t\t\t\t\t\tactivity.msg.setText(message);\n\t\t\t\t\t\t}\n\t\t\t\t\t});",
@@ -175,7 +147,7 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 0,
 			"sheets":
 			[
 				{
@@ -183,49 +155,20 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 16,
+						"buffer_size": 0,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								7,
-								7
+								0,
+								0
 							]
 						],
 						"settings":
 						{
-							"auto_name": "wifi217",
 							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "/home/drizze/ggj2018/BugigaSock.java",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2005,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								102,
-								102
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Java/Java.sublime-syntax"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -233,132 +176,17 @@
 					},
 					"stack_index": 0,
 					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "/home/drizze/ggj2018/Server.java",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2459,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								28,
-								28
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Java/Java.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "/home/drizze/ggj2018/Client.java",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1812,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1810,
-								1810
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Java/Java.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 114.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1096,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1096,
-								1096
-							]
-						],
-						"settings":
-						{
-							"auto_name": "Um alien faz um pouso forçado no planeta ARRET e t",
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 5,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 506,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								506,
-								506
-							]
-						],
-						"settings":
-						{
-							"auto_name": "Requisitos:",
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
-					"type": "text"
 				}
 			]
 		}
 	],
 	"incremental_find":
 	{
-		"height": 27.0
+		"height": 26.0
 	},
 	"input":
 	{
-		"height": 39.0
+		"height": 42.0
 	},
 	"layout":
 	{
@@ -395,7 +223,7 @@
 	"project": "kaymada.sublime-project",
 	"replace":
 	{
-		"height": 50.0
+		"height": 48.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -404,6 +232,10 @@
 		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"player.ts",
+				"classes/Player.ts"
+			],
 			[
 				"observet",
 				"classes/Observer.ts"

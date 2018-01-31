@@ -4,7 +4,7 @@ import {Gameroom} from "./Gameroom"
 
 export class Player extends GameObject{
 
-    private id : number = -1;
+    private _id : number = -1;
     private _gameroom : Gameroom;
     private guest : boolean = true;
     private input : object = {
@@ -16,5 +16,9 @@ export class Player extends GameObject{
 
     get gameroom(){
     	return this._gameroom;
+    }
+
+    get id(){
+        return this._id;
     }
 }

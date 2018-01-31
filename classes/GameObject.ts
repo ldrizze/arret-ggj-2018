@@ -41,7 +41,7 @@ export class GameObject{
 	 * Representa as propriedades de transformação do GameObject atual.
 	 * @type {Object}
 	 */
-	private transform : object = {
+	private transform : any = {
 
 		/**
 		 * Representa a posição atual absoluta do GameObject
@@ -159,5 +159,11 @@ export class GameObject{
 		}
 	}
 
+	public setPosition(position:Vector3){
+		this.transform.position = position;
+	}
 
+	public getPosition():Vector3{
+		return this.transform.position;
+	}
 }

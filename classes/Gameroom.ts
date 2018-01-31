@@ -13,11 +13,11 @@ export class Gameroom{
 		private password:string,
 		private maxPlayers:number = 10
 	){
-		
+		this.players = new Collection<Player>("name")
 	}
 	
-	public addPlayer(){
-
+	public addPlayer(player:Player){
+		this.players.add(player);
 	}
 
 	public removePlayer(){

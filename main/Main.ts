@@ -96,7 +96,12 @@ function onReceive(client_id:string, data:{action:string}){
 
 		/* Run the action */
 		log.inf("Routing to action: ", data.action);
-		Actions.find(data.action).run(_payload);
+		let reply:Payload = Actions.find(data.action).run(_payload);
+
+		/* If reply, return to player */
+		if(reply){
+			main_driver.send(reply);
+		}
 
 
 		return true;
