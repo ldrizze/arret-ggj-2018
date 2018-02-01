@@ -12,6 +12,7 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var GameObject_1 = require("./GameObject");
 var Vector3_1 = require("./Vector3");
+var Logger_1 = require("./Logger");
 var Player = (function (_super) {
     __extends(Player, _super);
     function Player() {
@@ -22,8 +23,10 @@ var Player = (function (_super) {
             position: new Vector3_1.Vector3,
             rotation: new Vector3_1.Vector3
         };
+        _this.log = new Logger_1.Log("Player");
         _this.gameIsFocused = true;
         _this._id = _this.makeID();
+        _this.log.inf("CREATING NEW PLAYER", _this._id);
         return _this;
     }
     Object.defineProperty(Player.prototype, "gameroom", {

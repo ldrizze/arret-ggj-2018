@@ -26,7 +26,10 @@ export class MakeMatch extends Action{
 		let md : Driver = this.MainDriver;
 
 		/* Make make player if doesn't has been maked */
-		if(payload.player === null) payload.user.makePlayer();
+		if(payload.player === null){
+			payload.user.makePlayer();
+			p = payload.user.player
+		}
 
 		if(payload.data.type == 'mobile'){ // Mobile player
 

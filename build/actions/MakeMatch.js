@@ -17,6 +17,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var Action_1 = require("../classes/Action");
+var Payload_1 = require("../classes/Payload");
 var Services_1 = require("../classes/Services");
 var Gameroom_1 = require("../classes/Gameroom");
 var Logger_1 = require("../classes/Logger");
@@ -31,8 +32,11 @@ var MakeMatch = (function (_super) {
     MakeMatch.prototype.run = function (payload) {
         var g = null;
         var p = payload.player;
-        if (payload.player === null)
+        var md = this.MainDriver;
+        if (payload.player === null) {
             payload.user.makePlayer();
+            p = payload.user.player;
+        }
         if (payload.data.type == 'mobile') {
             this.Gamerooms.foreach(function (element, index) {
                 if (element.playerCount >= 2) {
@@ -70,11 +74,23 @@ var MakeMatch = (function (_super) {
         }
         if (g.isFull) {
             this.log.dbg('Broadcast new user entering and match start to all gameroom\'s players');
+            g.players.foreach(function (element, index) {
+                if (element.id != p.id) {
+                    var _pl = new Payload_1.Payload(element.user, { newuser: true, totalusers: g.playerCount, startgame: true });
+                    md.send(_pl);
+                }
+            });
         }
         else {
             this.log.dbg('Broadcast new user entering to all gameroom\'s players');
+            g.players.foreach(function (element, index) {
+                if (element.id != p.id) {
+                    var _pl = new Payload_1.Payload(element.user, { newuser: true, totalusers: g.playerCount, startgame: false });
+                    md.send(_pl);
+                }
+            });
         }
-        return null;
+        return new Payload_1.Payload(payload.user, { wait: true });
     };
     MakeMatch = __decorate([
         Services_1.ServiceDecorators.service(["Users", "MainDriver", "Gamerooms"])

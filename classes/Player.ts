@@ -2,6 +2,7 @@ import {GameObject} from "./GameObject"
 import {Vector3} from "./Vector3";
 import {User}     from './User'
 import {Gameroom} from "./Gameroom"
+import {Log} from "./Logger"
 
 export class Player extends GameObject{
 
@@ -13,12 +14,15 @@ export class Player extends GameObject{
         position : new Vector3,
         rotation : new Vector3
     }
+
+    private log : Log = new Log("Player")
     
     private gameIsFocused : boolean = true;
 
     constructor(){
         super();
         this._id = this.makeID()
+        this.log.inf("CREATING NEW PLAYER", this._id)
     }
 
     get gameroom(){
