@@ -18,6 +18,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 var Action_1 = require("../classes/Action");
 var Services_1 = require("../classes/Services");
+var Gameroom_1 = require("../classes/Gameroom");
 var Logger_1 = require("../classes/Logger");
 var MakeMatch = (function (_super) {
     __extends(MakeMatch, _super);
@@ -29,18 +30,24 @@ var MakeMatch = (function (_super) {
     }
     MakeMatch.prototype.run = function (payload) {
         var g = null;
+        var p = payload.player;
+        if (payload.player === null)
+            payload.user.makePlayer();
         if (payload.data.type == 'mobile') {
             this.Gamerooms.foreach(function (element, index) {
                 if (element.playerCount >= 2) {
                     if (element.host && !g) {
                         g = element;
+                        return false;
                     }
                     else {
                     }
                 }
                 else {
-                    if (!g)
+                    if (!g) {
                         g = element;
+                        return false;
+                    }
                 }
             });
         }
@@ -54,6 +61,8 @@ var MakeMatch = (function (_super) {
         if (!g) {
             this.log.dbg('Instanciate new gameroom.');
             this.log.dbg('Add gameroom to Gamerooms collection.');
+            g = new Gameroom_1.Gameroom("grname", 3, false);
+            this.Gamerooms.add(g);
         }
         g.addPlayer(payload.user.player);
         if (payload.data.type == 'vr' && !g.host) {

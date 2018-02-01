@@ -3,25 +3,27 @@ import {Collection} from "./Collection"
 
 export class Gameroom{
 
+	private _id 		: string;
 	private _host 		: Player;
-	private players 	: Collection<Player>;
-	private transport 	: Array<Object>;
+	public players 	: Collection<Player>;
 	
 	constructor(
-		private id:number,
 		private name:string,
-		private password:string,
-		private maxPlayers:number = 3 // Arret tem apenas 3 players por sala
+		private maxPlayers:number = 3, // Arret tem apenas 3 players por sala
+		private privategame : boolean = false
 	){
-		this.players = new Collection<Player>("name")
+		this.players = new Collection<Player>("id")
+		this._id = this.makeID()
 	}
 	
 	public addPlayer(player:Player){
+		player.setGameroom(this);
 		this.players.add(player);
 	}
 
-	public removePlayer(){
-
+	public removePlayer(player:Player){
+		if(this.players.remove(player.id))
+			player.unsetGameroom();
 	}
 
 	get host(){
@@ -36,6 +38,14 @@ export class Gameroom{
 		return this.players.length;
 	}
 
+	get id(){
+		return this._id;
+	}
+
+	get isPrivate(){
+		return this.privategame;
+	}
+
 	public findPlayerById(){
 
 	}
@@ -46,5 +56,15 @@ export class Gameroom{
 
 	public setHost(host:Player){
 		this._host = host;
+	}
+
+	private makeID() {
+		var text = "";
+		var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+		for (var i = 0; i < 5; i++)
+		text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+		return text.substr(0, 4);
 	}
 }

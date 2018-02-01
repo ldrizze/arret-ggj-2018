@@ -2,18 +2,22 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var Collection_1 = require("./Collection");
 var Gameroom = (function () {
-    function Gameroom(id, name, password, maxPlayers) {
+    function Gameroom(name, maxPlayers, privategame) {
         if (maxPlayers === void 0) { maxPlayers = 3; }
-        this.id = id;
+        if (privategame === void 0) { privategame = false; }
         this.name = name;
-        this.password = password;
         this.maxPlayers = maxPlayers;
-        this.players = new Collection_1.Collection("name");
+        this.privategame = privategame;
+        this.players = new Collection_1.Collection("id");
+        this._id = this.makeID();
     }
     Gameroom.prototype.addPlayer = function (player) {
+        player.setGameroom(this);
         this.players.add(player);
     };
-    Gameroom.prototype.removePlayer = function () {
+    Gameroom.prototype.removePlayer = function (player) {
+        if (this.players.remove(player.id))
+            player.unsetGameroom();
     };
     Object.defineProperty(Gameroom.prototype, "host", {
         get: function () {
@@ -36,12 +40,33 @@ var Gameroom = (function () {
         enumerable: true,
         configurable: true
     });
+    Object.defineProperty(Gameroom.prototype, "id", {
+        get: function () {
+            return this._id;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Gameroom.prototype, "isPrivate", {
+        get: function () {
+            return this.privategame;
+        },
+        enumerable: true,
+        configurable: true
+    });
     Gameroom.prototype.findPlayerById = function () {
     };
     Gameroom.prototype.update = function () {
     };
     Gameroom.prototype.setHost = function (host) {
         this._host = host;
+    };
+    Gameroom.prototype.makeID = function () {
+        var text = "";
+        var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        for (var i = 0; i < 5; i++)
+            text += possible.charAt(Math.floor(Math.random() * possible.length));
+        return text.substr(0, 4);
     };
     return Gameroom;
 }());

@@ -19,48 +19,58 @@ export class MakeMatch extends Action{
 
 	private log:Log = new Log("Actions.MakeMatch");
 
-    public run(payload:Payload):Payload{
+	public run(payload:Payload):Payload{
 
 		let g : Gameroom = null;
+		let p : Player = payload.player;
+		let md : Driver = this.MainDriver;
 
-    	if(payload.data.type == 'mobile'){ // Mobile player
+		/* Make make player if doesn't has been maked */
+		if(payload.player === null) payload.user.makePlayer();
 
-    		this.Gamerooms.foreach((element,index) => {
-    			if(element.playerCount >= 2){ // Sala tem apenas uma vaga sobrando
-    				if(element.host && !g){ // Nao achou sala e a sala atual já tem host mas tem uma vaga sobrando
-    					g = element;
-    				}else{ // Já achou sala ou a sala só tem uma vaga sobrando mas tem que ser vr pra ser host
-    					// Continua procurando
-    				}
-    			}else{ // sala tem mais de uma vaga sobrando
-    				if(!g)
-    					g = element;
-    			}
-    		});
+		if(payload.data.type == 'mobile'){ // Mobile player
 
-    	}else if(payload.data.type == 'vr'){ // VR player
+			this.Gamerooms.foreach((element,index) => {
+				if(element.playerCount >= 2){ // Sala tem apenas uma vaga sobrando
+					if(element.host && !g){ // Nao achou sala e a sala atual já tem host mas tem uma vaga sobrando
+						g = element;
+						return false;
+					}else{ // Já achou sala ou a sala só tem uma vaga sobrando mas tem que ser vr pra ser host
+						// Continua procurando
+					}
+				}else{ // sala tem mais de uma vaga sobrando
+					if(!g){
+						g = element;
+						return false;
+					}
+				}
+			});
 
-    		this.Gamerooms.foreach((element,index) => {
-    			/**
-    			 * Se a sala tem host continua procurando senão, se ainda 
-    			 * nao achou uma sala continua procurando. Se encontrou 
-    			 * uma sala sem host guarda a referncia e nao procura mais.
-    			 * Mas termina o for. :P
-    			 */
-    			if(!element.host && !g){ 
-    				g = element;
-    			}
-    		});
-    	}
+		}else if(payload.data.type == 'vr'){ // VR player
 
-    	if(!g){ // Nao encontrou sala apropriada
+			this.Gamerooms.foreach((element,index) => {
+				/**
+				 * Se a sala tem host continua procurando senão, se ainda 
+				 * nao achou uma sala continua procurando. Se encontrou 
+				 * uma sala sem host guarda a referncia e nao procura mais.
+				 * Mas termina o for. :P
+				 */
+				if(!element.host && !g){
+					g = element;
+				}
+			});
+		}
+
+		if(!g){ // Nao encontrou sala apropriada
 			// TO-DO: instanciar nova gameroom
 			// TO-DO: adicionar a collection de gamerooms
 			this.log.dbg('Instanciate new gameroom.');
 			this.log.dbg('Add gameroom to Gamerooms collection.');
+			g = new Gameroom("grname", 3, false);
+			this.Gamerooms.add(g);
 		}
 
-    	g.addPlayer(payload.user.player); // adiciona o player à sala
+		g.addPlayer(payload.user.player); // adiciona o player à sala
 
 		if(payload.data.type == 'vr' && !g.host){ // se o player for vr e nao tiver host na sala
 			g.setHost(payload.user.player);
@@ -69,12 +79,25 @@ export class MakeMatch extends Action{
 		if(g.isFull){ // Se após a entrada do novo player a sala está completa
 			// TO-DO: broadcast entrada de usuário e inicio de partida
 			this.log.dbg('Broadcast new user entering and match start to all gameroom\'s players');
+			g.players.foreach((element, index) => {
+				if(element.id != p.id){
+					let _pl = new Payload(element.user, {newuser: true, totalusers: g.playerCount, startgame: true})
+					md.send(_pl)
+				}
+			});
 		}else{
 			// TO-DO: broadcast entrada de usuário
 			this.log.dbg('Broadcast new user entering to all gameroom\'s players');
+			g.players.foreach((element, index) => {
+				if(element.id != p.id){
+					let _pl = new Payload(element.user, {newuser: true, totalusers: g.playerCount, startgame: false})
+					md.send(_pl)
+				}
+			});
 		}
 
-        return null;
-    }
-    
+		/* Retorna um wait para o mesmo user */
+		return new Payload(payload.user, {wait: true});
+	}
+	
 }

@@ -57,7 +57,8 @@ var Collection = (function () {
     Collection.prototype.foreach = function (iterator_function) {
         if (typeof iterator_function == "function") {
             for (var i in this.list) {
-                iterator_function(this.list[i], i);
+                if (iterator_function(this.list[i], i) === false)
+                    break;
             }
         }
         else {

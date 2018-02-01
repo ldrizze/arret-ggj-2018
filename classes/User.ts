@@ -34,6 +34,15 @@ export class User{
         return null;
     }
 
+    public makePlayer(){
+        this._player = new Player();
+        this._player.setUser(this);
+    }
+
+    public destroyPlayer(){
+        this._player = null;
+    }
+
     public toString(){
         return this._id+"|"+this._client_id
     }

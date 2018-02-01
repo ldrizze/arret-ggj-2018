@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+var Player_1 = require("./Player");
 var User = (function () {
     function User(_id, _client_id) {
         this._id = _id;
@@ -39,6 +40,13 @@ var User = (function () {
     };
     User.prototype.auth = function (username, password) {
         return null;
+    };
+    User.prototype.makePlayer = function () {
+        this._player = new Player_1.Player();
+        this._player.setUser(this);
+    };
+    User.prototype.destroyPlayer = function () {
+        this._player = null;
     };
     User.prototype.toString = function () {
         return this._id + "|" + this._client_id;
