@@ -4,10 +4,10 @@ import {Collection} from "../classes/Collection"
 import {User} from "../classes/User"
 import {Player} from "../classes/Player"
 import {Payload, ErrorPayload} from "../classes/Payload"
-import {Gameroom} from "../classes/Gameroom"
-import {Services} from "../classes/Services"
-import {Event} from "../classes/Event"
-import {Observer} from "../classes/Observer"
+import {Gameroom} 	from "../classes/Gameroom"
+import {Services} 	from "../classes/Services"
+import {Event} 		from "../classes/Event"
+import {Observer} 	from "../classes/Observer"
 import {Log,Logger} from "../classes/Logger"
 
 export interface ProcessEnv {
@@ -22,11 +22,11 @@ let log = new Log("Main")
 let main_driver = new Configuration.main_driver(onConnect.bind(Configuration.main_driver), onReceive.bind(Configuration.main_driver), onClose.bind(Configuration.main_driver));
 
 /* Main collections */
-log.inf("Creating collections")
-let Users = new Collection<User>("id")
-let Players = new Collection<Player>("id")
-let Gamerooms = new Collection<Gameroom>("id")
-log.inf("Collections successfully created")
+log.inf("Creating collections");
+let Users 		= new Collection<User>("id");
+let Players 	= new Collection<Player>("id");
+let Gamerooms 	= new Collection<Gameroom>("id");
+log.inf("Collections successfully created");
 
 /* Register Services */
 log.inf("Registering Services")

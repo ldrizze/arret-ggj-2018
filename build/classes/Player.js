@@ -39,6 +39,13 @@ var Player = (function (_super) {
         enumerable: true,
         configurable: true
     });
+    Object.defineProperty(Player.prototype, "user", {
+        get: function () {
+            return this._user;
+        },
+        enumerable: true,
+        configurable: true
+    });
     return Player;
 }(GameObject_1.GameObject));
 exports.Player = Player;

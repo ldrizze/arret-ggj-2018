@@ -6,7 +6,7 @@ import {Network} from "./Network"
 export class Payload{
     
     constructor(private _user:User,
-    private _data:Object = null,
+    private _data:any = null,
     private _is_received = false){}
 
     public transport():boolean{

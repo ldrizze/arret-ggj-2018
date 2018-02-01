@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"p",
+				"payload"
+			],
+			[
 				"log",
 				"logtypes\tproperty"
 			],
@@ -16,27 +20,63 @@
 	"buffers":
 	[
 		{
-			"contents": "",
+			"file": "actions/MakeMatch.ts",
 			"settings":
 			{
-				"buffer_size": 0,
-				"line_ending": "Unix",
-				"name": "Find References",
-				"scratch": true
+				"buffer_size": 728,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "main/Actions.ts",
+			"settings":
+			{
+				"buffer_size": 359,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
 			}
 		}
 	],
-	"build_system": "",
+	"build_system": "[Compile] Kaymada Server",
 	"build_system_choices":
 	[
+		[
+			[
+				[
+					"[Compile] Kaymada Server",
+					""
+				],
+				[
+					"[Release] Kaymada Server",
+					""
+				],
+				[
+					"[Tests] Kaymada Server",
+					""
+				]
+			],
+			[
+				"[Compile] Kaymada Server",
+				""
+			]
+		]
 	],
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 318.0,
-		"last_filter": "types",
+		"height": 170.0,
+		"last_filter": "install",
 		"selected_items":
 		[
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"remove p",
+				"Package Control: Remove Package"
+			],
 			[
 				"types",
 				"Set Syntax: TypeScript"
@@ -48,13 +88,9 @@
 			[
 				"typesc",
 				"Set Syntax: TypeScript"
-			],
-			[
-				"install",
-				"Package Control: Install Package"
 			]
 		],
-		"width": 515.0
+		"width": 444.0
 	},
 	"console":
 	{
@@ -74,13 +110,19 @@
 	},
 	"expanded_folders":
 	[
-		"/home/drizze/arretggj2018",
-		"/home/drizze/arretggj2018/actions",
-		"/home/drizze/arretggj2018/classes",
-		"/home/drizze/arretggj2018/main"
+		"/D/Projetos/2018/GGJ 2018/Server",
+		"/D/Projetos/2018/GGJ 2018/Server/actions",
+		"/D/Projetos/2018/GGJ 2018/Server/main"
 	],
 	"file_history":
 	[
+		"/D/Projetos/2018/GGJ 2018/Server/actions/Route.ts",
+		"/D/Projetos/2018/GGJ 2018/Server/actions/CreateRoom.ts",
+		"/D/Projetos/2018/GGJ 2018/Server/classes/Gameroom.ts",
+		"/D/Projetos/2018/GGJ 2018/Server/classes/GameObject.ts",
+		"/D/Projetos/2018/GGJ 2018/Server/main/Main.ts",
+		"/D/Projetos/2018/GGJ 2018/Server/package.json",
+		"/D/Projetos/2018/GGJ 2018/Server/kaymada.sublime-project",
 		"/home/drizze/arretggj2018/classes/Action.ts",
 		"/home/drizze/arretggj2018/actions/CreateRoom.ts",
 		"/home/drizze/arretggj2018/classes/Gameroom.ts",
@@ -108,7 +150,7 @@
 	],
 	"find":
 	{
-		"height": 26.0
+		"height": 44.0
 	},
 	"find_in_files":
 	{
@@ -122,6 +164,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"}",
 			"position",
 			"transform",
 			"boolean",
@@ -152,18 +195,48 @@
 			[
 				{
 					"buffer": 0,
+					"file": "actions/MakeMatch.ts",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 0,
+						"buffer_size": 728,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								576,
+								576
+							]
+						],
+						"settings":
+						{
+							"open_with_edit": true,
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 66.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "main/Actions.ts",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 359,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								228,
+								228
 							]
 						],
 						"settings":
@@ -174,7 +247,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 1,
 					"type": "text"
 				}
 			]
@@ -182,11 +255,11 @@
 	],
 	"incremental_find":
 	{
-		"height": 26.0
+		"height": 30.0
 	},
 	"input":
 	{
-		"height": 42.0
+		"height": 43.0
 	},
 	"layout":
 	{
@@ -215,6 +288,10 @@
 	{
 		"height": 0.0
 	},
+	"output.exec":
+	{
+		"height": 145.0
+	},
 	"output.find_results":
 	{
 		"height": 0.0
@@ -223,7 +300,7 @@
 	"project": "kaymada.sublime-project",
 	"replace":
 	{
-		"height": 48.0
+		"height": 56.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -232,6 +309,22 @@
 		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"route",
+				"actions\\Route.ts"
+			],
+			[
+				"creater",
+				"actions\\CreateRoom.ts"
+			],
+			[
+				"gameo",
+				"classes\\GameObject.ts"
+			],
+			[
+				"gameroom",
+				"classes\\Gameroom.ts"
+			],
 			[
 				"player.ts",
 				"classes/Player.ts"
