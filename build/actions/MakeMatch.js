@@ -75,20 +75,21 @@ var MakeMatch = (function (_super) {
         if (g.isFull) {
             this.log.dbg('Broadcast new user entering and match start to all gameroom\'s players');
             g.players.foreach(function (element, index) {
-                if (element.id != p.id) {
-                    var _pl = new Payload_1.Payload(element.user, { newuser: true, totalusers: g.playerCount, startgame: true });
-                    md.send(_pl);
-                }
+                var _pl = new Payload_1.Payload(element.user, { newuser: true, totalusers: g.playerCount, startgame: true });
+                md.send(_pl);
             });
+            return null;
         }
         else {
             this.log.dbg('Broadcast new user entering to all gameroom\'s players');
-            g.players.foreach(function (element, index) {
-                if (element.id != p.id) {
-                    var _pl = new Payload_1.Payload(element.user, { newuser: true, totalusers: g.playerCount, startgame: false });
-                    md.send(_pl);
-                }
-            });
+            if (g.playerCount > 1) {
+                g.players.foreach(function (element, index) {
+                    if (element.id != p.id) {
+                        var _pl = new Payload_1.Payload(element.user, { newuser: true, totalusers: g.playerCount, startgame: false });
+                        md.send(_pl);
+                    }
+                });
+            }
         }
         return new Payload_1.Payload(payload.user, { wait: true });
     };

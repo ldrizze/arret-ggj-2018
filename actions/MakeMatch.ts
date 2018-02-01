@@ -83,20 +83,22 @@ export class MakeMatch extends Action{
 			// TO-DO: broadcast entrada de usuário e inicio de partida
 			this.log.dbg('Broadcast new user entering and match start to all gameroom\'s players');
 			g.players.foreach((element, index) => {
-				if(element.id != p.id){
-					let _pl = new Payload(element.user, {newuser: true, totalusers: g.playerCount, startgame: true})
-					md.send(_pl)
-				}
+				let _pl = new Payload(element.user, {newuser: true, totalusers: g.playerCount, startgame: true})
+				md.send(_pl)
 			});
+
+			return null;
 		}else{
 			// TO-DO: broadcast entrada de usuário
 			this.log.dbg('Broadcast new user entering to all gameroom\'s players');
-			g.players.foreach((element, index) => {
-				if(element.id != p.id){
-					let _pl = new Payload(element.user, {newuser: true, totalusers: g.playerCount, startgame: false})
-					md.send(_pl)
-				}
-			});
+			if(g.playerCount > 1){
+				g.players.foreach((element, index) => {
+					if(element.id != p.id){
+						let _pl = new Payload(element.user, {newuser: true, totalusers: g.playerCount, startgame: false})
+						md.send(_pl)
+					}
+				});
+			}
 		}
 
 		/* Retorna um wait para o mesmo user */
