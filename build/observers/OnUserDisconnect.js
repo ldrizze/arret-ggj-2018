@@ -41,6 +41,10 @@ var OnUserDisconnect = (function (_super) {
                         var _pld = new Payload_1.Payload(element.user, 'abortGame', { 'errormsg': 'A player has been disconected from the game' });
                         _d_1.send(_pld);
                     });
+                    _user.player.gameroom.players.foreach(function (element, index) {
+                        if (element.gameroom != null)
+                            element.gameroom.removePlayer(element);
+                    });
                 }
                 if (_user.player.gameroom != null) {
                     _user.player.gameroom.removePlayer(_user.player);
