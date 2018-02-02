@@ -92,7 +92,7 @@ function onReceive(client_id:string, data:{action:string}){
 
 		/* Make the payload */
 		log.inf("Making Payload: ", client_id);
-		let _payload = new Payload(_user, data, true);
+		let _payload = new Payload(_user, data.action, data, true);
 
 		/* Run the action */
 		log.inf("Routing to action: ", data.action);

@@ -28,13 +28,13 @@ export class MakeMatch extends Action{
 		/* Make make player if doesn't has been maked */
 		if(payload.player === null){
 			payload.user.makePlayer();
-			p = payload.user.player
+			p = payload.user.player;
 		}
 
 		if(payload.data.type == 'mobile'){ // Mobile player
 
 			this.Gamerooms.foreach((element,index) => {
-				if(element.playerCount >= 2){ // Sala tem apenas uma vaga sobrando
+				if(element.playerCount >= 2 && !element.gameStarted){ // Sala tem apenas uma vaga sobrando
 					if(element.host && !g){ // Nao achou sala e a sala atual já tem host mas tem uma vaga sobrando
 						g = element;
 						return false;
@@ -42,7 +42,7 @@ export class MakeMatch extends Action{
 						// Continua procurando
 					}
 				}else{ // sala tem mais de uma vaga sobrando
-					if(!g){
+					if(!g && !element.gameStarted){
 						g = element;
 						return false;
 					}
@@ -58,7 +58,7 @@ export class MakeMatch extends Action{
 				 * uma sala sem host guarda a referncia e nao procura mais.
 				 * Mas termina o for. :P
 				 */
-				if(!element.host && !g){
+				if(!element.host && !g && !element.gameStarted){
 					g = element;
 				}
 			});
@@ -82,27 +82,22 @@ export class MakeMatch extends Action{
 		if(g.isFull){ // Se após a entrada do novo player a sala está completa
 			// TO-DO: broadcast entrada de usuário e inicio de partida
 			this.log.dbg('Broadcast new user entering and match start to all gameroom\'s players');
+			g.gameStarted = true;
 			g.players.foreach((element, index) => {
-				let _pl = new Payload(element.user, {newuser: true, totalusers: g.playerCount, startgame: true})
+				let _pl = new Payload(element.user, 'joinRoom', { grid: g.id, newuser: true, totalusers: g.playerCount, startgame: true, host: (g.host != null && payload.user.player.id == g.host.id) })
 				md.send(_pl)
 			});
 
-			return null;
 		}else{
 			// TO-DO: broadcast entrada de usuário
 			this.log.dbg('Broadcast new user entering to all gameroom\'s players');
-			if(g.playerCount > 1){
-				g.players.foreach((element, index) => {
-					if(element.id != p.id){
-						let _pl = new Payload(element.user, {newuser: true, totalusers: g.playerCount, startgame: false})
-						md.send(_pl)
-					}
-				});
-			}
+			g.players.foreach((element, index) => {
+				let _pl = new Payload(element.user, 'joinRoom', { grid: g.id, newuser: true, totalusers: g.playerCount, startgame: false, host: (g.host != null && payload.user.player.id == g.host.id) })
+				md.send(_pl)
+			});
 		}
 
-		/* Retorna um wait para o mesmo user */
-		return new Payload(payload.user, {wait: true});
+		return null;
 	}
 	
 }

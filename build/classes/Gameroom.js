@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var Collection_1 = require("./Collection");
+var Logger_1 = require("./Logger");
 var Gameroom = (function () {
     function Gameroom(name, maxPlayers, privategame) {
         if (maxPlayers === void 0) { maxPlayers = 3; }
@@ -8,6 +9,8 @@ var Gameroom = (function () {
         this.name = name;
         this.maxPlayers = maxPlayers;
         this.privategame = privategame;
+        this.gameStarted = false;
+        this.log = new Logger_1.Log("Gameroom");
         this.players = new Collection_1.Collection("id");
         this._id = this.makeID();
     }
@@ -16,8 +19,12 @@ var Gameroom = (function () {
         this.players.add(player);
     };
     Gameroom.prototype.removePlayer = function (player) {
-        if (this.players.remove(player.id))
+        this.log.dbg("Removing player", player.id);
+        if (this.players.remove(player.id)) {
+            if (this._host.id == player.id)
+                this.unsetHost();
             player.unsetGameroom();
+        }
     };
     Object.defineProperty(Gameroom.prototype, "host", {
         get: function () {
@@ -60,6 +67,9 @@ var Gameroom = (function () {
     };
     Gameroom.prototype.setHost = function (host) {
         this._host = host;
+    };
+    Gameroom.prototype.unsetHost = function () {
+        this._host = null;
     };
     Gameroom.prototype.makeID = function () {
         var text = "";

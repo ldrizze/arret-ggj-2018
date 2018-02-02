@@ -14,7 +14,7 @@ export class Collection<T>{
 		this.list.push(new_item);
 	}
 
-	public remove(key:string){
+	public remove(key:string):boolean{
 		if(this.exists(key)){
 			for(let i = 0; i < this.list.length; i++){
 				if(this.list[i][this.key] == key){

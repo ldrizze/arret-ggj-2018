@@ -1,11 +1,15 @@
 import {Player} 	from "./Player"
 import {Collection} from "./Collection"
+import {Log} from "./Logger"
+
 
 export class Gameroom{
 
 	private _id 		: string;
 	private _host 		: Player;
-	public players 	: Collection<Player>;
+	public players 		: Collection<Player>;
+	public gameStarted 	: boolean = false;
+	private log			: Log = new Log("Gameroom");
 	
 	constructor(
 		private name:string,
@@ -22,8 +26,11 @@ export class Gameroom{
 	}
 
 	public removePlayer(player:Player){
-		if(this.players.remove(player.id))
+		this.log.dbg("Removing player", player.id);
+		if(this.players.remove(player.id)){
+			if(this._host.id == player.id) this.unsetHost();
 			player.unsetGameroom();
+		}
 	}
 
 	get host(){
@@ -56,6 +63,10 @@ export class Gameroom{
 
 	public setHost(host:Player){
 		this._host = host;
+	}
+
+	public unsetHost(){
+		this._host = null;
 	}
 
 	private makeID() {

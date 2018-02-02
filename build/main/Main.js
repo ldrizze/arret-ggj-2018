@@ -56,7 +56,7 @@ function onReceive(client_id, data) {
     var _user = Users.findBy('client_id', client_id);
     if (_user) {
         log.inf("Making Payload: ", client_id);
-        var _payload = new Payload_1.Payload(_user, data, true);
+        var _payload = new Payload_1.Payload(_user, data.action, data, true);
         log.inf("Routing to action: ", data.action);
         var reply = Actions_1.Actions.find(data.action).run(_payload);
         if (reply) {

@@ -6,8 +6,11 @@ import {Network} from "./Network"
 export class Payload{
     
     constructor(private _user:User,
+        _action:string,
     private _data:any = null,
-    private _is_received = false){}
+    private _is_received = false){
+        this._data['action'] = _action;
+    }
 
     public transport():boolean{
     	return false;
@@ -34,7 +37,7 @@ export class Payload{
     }
 
     public toString(){
-        return JSON.stringify(this.data.toString());
+        return JSON.stringify(this.data);
     }
     
 }
@@ -42,6 +45,6 @@ export class Payload{
 export class ErrorPayload extends Payload{
 
     constructor(_user:User,_error_code:number,_error_message:string){
-         super(_user, {error:true, code:_error_code, message:_error_message});
+         super(_user, 'error', {error:true, code:_error_code, message:_error_message});
     }
 }

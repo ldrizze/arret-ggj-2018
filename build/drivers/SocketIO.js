@@ -35,9 +35,15 @@ var SocketIO = (function (_super) {
     SocketIO.prototype.send = function (payload) {
         if (payload.is_received)
             this.log.wrn("Returning a received payload");
+        var _d = {
+            action: payload.data.action,
+            payload: payload.data
+        };
+        delete _d.payload.action;
+        this.log.dbg("Sending payload to", payload.user.client_id, payload);
         var _sock = this.sockets.find(payload.user.client_id);
         if (_sock) {
-            _sock.s.emit('action', payload.data);
+            _sock.s.emit('action', _d);
         }
         else {
             this.log.err("Socket not found for client_id", payload.user.client_id);

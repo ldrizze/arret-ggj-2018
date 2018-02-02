@@ -39,7 +39,7 @@ var MakeMatch = (function (_super) {
         }
         if (payload.data.type == 'mobile') {
             this.Gamerooms.foreach(function (element, index) {
-                if (element.playerCount >= 2) {
+                if (element.playerCount >= 2 && !element.gameStarted) {
                     if (element.host && !g) {
                         g = element;
                         return false;
@@ -48,7 +48,7 @@ var MakeMatch = (function (_super) {
                     }
                 }
                 else {
-                    if (!g) {
+                    if (!g && !element.gameStarted) {
                         g = element;
                         return false;
                     }
@@ -57,7 +57,7 @@ var MakeMatch = (function (_super) {
         }
         else if (payload.data.type == 'vr') {
             this.Gamerooms.foreach(function (element, index) {
-                if (!element.host && !g) {
+                if (!element.host && !g && !element.gameStarted) {
                     g = element;
                 }
             });
@@ -74,24 +74,20 @@ var MakeMatch = (function (_super) {
         }
         if (g.isFull) {
             this.log.dbg('Broadcast new user entering and match start to all gameroom\'s players');
+            g.gameStarted = true;
             g.players.foreach(function (element, index) {
-                var _pl = new Payload_1.Payload(element.user, { newuser: true, totalusers: g.playerCount, startgame: true });
+                var _pl = new Payload_1.Payload(element.user, 'joinRoom', { grid: g.id, newuser: true, totalusers: g.playerCount, startgame: true, host: (g.host != null && payload.user.player.id == g.host.id) });
                 md.send(_pl);
             });
-            return null;
         }
         else {
             this.log.dbg('Broadcast new user entering to all gameroom\'s players');
-            if (g.playerCount > 1) {
-                g.players.foreach(function (element, index) {
-                    if (element.id != p.id) {
-                        var _pl = new Payload_1.Payload(element.user, { newuser: true, totalusers: g.playerCount, startgame: false });
-                        md.send(_pl);
-                    }
-                });
-            }
+            g.players.foreach(function (element, index) {
+                var _pl = new Payload_1.Payload(element.user, 'joinRoom', { grid: g.id, newuser: true, totalusers: g.playerCount, startgame: false, host: (g.host != null && payload.user.player.id == g.host.id) });
+                md.send(_pl);
+            });
         }
-        return new Payload_1.Payload(payload.user, { wait: true });
+        return null;
     };
     MakeMatch = __decorate([
         Services_1.ServiceDecorators.service(["Users", "MainDriver", "Gamerooms"])

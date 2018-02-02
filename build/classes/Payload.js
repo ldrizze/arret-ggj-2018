@@ -11,12 +11,13 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var Payload = (function () {
-    function Payload(_user, _data, _is_received) {
+    function Payload(_user, _action, _data, _is_received) {
         if (_data === void 0) { _data = null; }
         if (_is_received === void 0) { _is_received = false; }
         this._user = _user;
         this._data = _data;
         this._is_received = _is_received;
+        this._data['action'] = _action;
     }
     Payload.prototype.transport = function () {
         return false;
@@ -57,7 +58,7 @@ var Payload = (function () {
         configurable: true
     });
     Payload.prototype.toString = function () {
-        return JSON.stringify(this.data.toString());
+        return JSON.stringify(this.data);
     };
     return Payload;
 }());
@@ -65,7 +66,7 @@ exports.Payload = Payload;
 var ErrorPayload = (function (_super) {
     __extends(ErrorPayload, _super);
     function ErrorPayload(_user, _error_code, _error_message) {
-        return _super.call(this, _user, { error: true, code: _error_code, message: _error_message }) || this;
+        return _super.call(this, _user, 'error', { error: true, code: _error_code, message: _error_message }) || this;
     }
     return ErrorPayload;
 }(Payload));
