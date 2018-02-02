@@ -27,10 +27,10 @@ export class OnUserDisconnect extends Observer{
 				/* If has gameroom and the game is running */
 				if(_user.player.gameroom != null && _user.player.gameroom.gameStarted){
 					_user.player.gameroom.players.foreach((element, index) => {
+						_ps.push(element);
 						if(element.id == _user.player.id) return true;
 						let _pld = new Payload(element.user, 'abortGame', {'errormsg': 'A player has been disconected from the game'});
 						_d.send(_pld);
-						_ps.push(element);
 					});
 
 					this.log.dbg("Gameroom players", (_user.player.gameroom.players ? _user.player.gameroom.players.length : 0))

@@ -39,11 +39,11 @@ var OnUserDisconnect = (function (_super) {
                 var _g = _user.player.gameroom;
                 if (_user.player.gameroom != null && _user.player.gameroom.gameStarted) {
                     _user.player.gameroom.players.foreach(function (element, index) {
+                        _ps_1.push(element);
                         if (element.id == _user.player.id)
                             return true;
                         var _pld = new Payload_1.Payload(element.user, 'abortGame', { 'errormsg': 'A player has been disconected from the game' });
                         _d_1.send(_pld);
-                        _ps_1.push(element);
                     });
                     this.log.dbg("Gameroom players", (_user.player.gameroom.players ? _user.player.gameroom.players.length : 0));
                     for (var i in _ps_1) {
