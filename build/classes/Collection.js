@@ -46,7 +46,7 @@ var Collection = (function () {
         return index;
     };
     Collection.prototype.removeByIndex = function (index) {
-        if (this.list.length - 1 <= index) {
+        if (this.list.length - 1 >= index) {
             this.list.splice(index, 1);
             return true;
         }

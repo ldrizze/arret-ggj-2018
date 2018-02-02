@@ -50,7 +50,7 @@ export class Collection<T>{
 	}
 
 	public removeByIndex(index:number){
-		if(this.list.length-1 <= index){
+		if(this.list.length-1 >= index){
 			this.list.splice(index, 1);
 			return true;
 		}else{
