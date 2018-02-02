@@ -21,25 +21,23 @@ export class OnUserDisconnect extends Observer{
 			if(_user.player != null){
 				this.log.dbg("Unset player", _user.player);
 				let _d = this.MainDriver;
+				let _ps = [];
 
 				/* If has gameroom and the game is running */
 				if(_user.player.gameroom != null && _user.player.gameroom.gameStarted){
-					_user.player.gameroom.gameStarted = false;
 					_user.player.gameroom.players.foreach((element, index) => {
 						let _pld = new Payload(element.user, 'abortGame', {'errormsg': 'A player has been disconected from the game'});
 						_d.send(_pld);
-
+						_ps.push(element);
 					});
 
-					_user.player.gameroom.players.foreach((element,index) => {
-						element.gameroom.removePlayer(element);
-					});
+					this.log.dbg("Gameroom players", (_user.player.gameroom.players ? _user.player.gameroom.players.length : 0))
+					for(let i in _ps){
+						_user.player.gameroom.removePlayer(_ps[i])
+					}
 				}
 
-				if(_user.player.gameroom != null){
-					_user.player.gameroom.removePlayer(_user.player);
-				}
-				_user.destroyPlayer()
+				_user.unsetPlayer();
 			}
 		}
 	}
