@@ -39,7 +39,7 @@ export class OnUserDisconnect extends Observer{
 					}
 				}
 
-				_user.unsetPlayer();
+				_user.destroyPlayer();
 			}
 		}
 	}

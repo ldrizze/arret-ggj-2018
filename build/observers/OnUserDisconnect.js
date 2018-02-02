@@ -50,7 +50,7 @@ var OnUserDisconnect = (function (_super) {
                         _g.removePlayer(_ps_1[i]);
                     }
                 }
-                _user.unsetPlayer();
+                _user.destroyPlayer();
             }
         }
     };
