@@ -12,8 +12,8 @@ export class OnUserDisconnect extends Observer{
 
     	if(_user.item){
     		_user = _user.item;
-    		this.log.dbg("Unset player", _user.player);
 	    	if(_user.player != null){
+    			this.log.dbg("Unset player", _user.player);
 	    		if(_user.player.gameroom != null){
 	    			_user.player.gameroom.removePlayer(_user.player);
 	    		}
