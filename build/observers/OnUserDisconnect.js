@@ -22,11 +22,15 @@ var OnUserDisconnect = (function (_super) {
     OnUserDisconnect.prototype.run = function (attachs) {
         this.log.dbg("Anyone has been disconnected from the server...");
         var _user = attachs.find('user');
-        if (_user.player != null) {
-            if (_user.player.gameroom != null) {
-                _user.player.gameroom.removePlayer(_user.player);
+        if (_user.item) {
+            _user = _user.item;
+            this.log.dbg("Unset player", _user.player);
+            if (_user.player != null) {
+                if (_user.player.gameroom != null) {
+                    _user.player.gameroom.removePlayer(_user.player);
+                }
+                _user.destroyPlayer();
             }
-            _user.destroyPlayer();
         }
     };
     return OnUserDisconnect;

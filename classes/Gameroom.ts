@@ -28,7 +28,7 @@ export class Gameroom{
 	public removePlayer(player:Player){
 		this.log.dbg("Removing player", player.id);
 		if(this.players.remove(player.id)){
-			if(this._host.id == player.id) this.unsetHost();
+			if(this._host != null && this._host.id == player.id) this.unsetHost();
 			player.unsetGameroom();
 		}
 	}

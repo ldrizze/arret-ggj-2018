@@ -8,13 +8,17 @@ export class OnUserDisconnect extends Observer{
 
     public run(attachs:any){
     	this.log.dbg("Anyone has been disconnected from the server...");
-    	let _user:User = attachs.find('user');
+    	let _user = attachs.find('user');
 
-    	if(_user.player != null){
-    		if(_user.player.gameroom != null){
-    			_user.player.gameroom.removePlayer(_user.player);
-    		}
-    		_user.destroyPlayer()
-    	}
+    	if(_user.item){
+    		_user = _user.item;
+    		this.log.dbg("Unset player", _user.player);
+	    	if(_user.player != null){
+	    		if(_user.player.gameroom != null){
+	    			_user.player.gameroom.removePlayer(_user.player);
+	    		}
+	    		_user.destroyPlayer()
+	    	}
+	    }
     }
 }

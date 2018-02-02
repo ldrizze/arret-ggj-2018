@@ -21,7 +21,7 @@ var Gameroom = (function () {
     Gameroom.prototype.removePlayer = function (player) {
         this.log.dbg("Removing player", player.id);
         if (this.players.remove(player.id)) {
-            if (this._host.id == player.id)
+            if (this._host != null && this._host.id == player.id)
                 this.unsetHost();
             player.unsetGameroom();
         }
