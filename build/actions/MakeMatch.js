@@ -76,14 +76,14 @@ var MakeMatch = (function (_super) {
             this.log.dbg('Broadcast new user entering and match start to all gameroom\'s players');
             g.gameStarted = true;
             g.players.foreach(function (element, index) {
-                var _pl = new Payload_1.Payload(element.user, 'joinRoom', { grid: g.id, newuser: true, totalusers: g.playerCount, startgame: true, host: (g.host != null && element.player.id == g.host.id) });
+                var _pl = new Payload_1.Payload(element.user, 'joinRoom', { grid: g.id, newuser: true, totalusers: g.playerCount, startgame: true, host: (g.host != null && element.id == g.host.id) });
                 md.send(_pl);
             });
         }
         else {
             this.log.dbg('Broadcast new user entering to all gameroom\'s players');
             g.players.foreach(function (element, index) {
-                var _pl = new Payload_1.Payload(element.user, 'joinRoom', { grid: g.id, newuser: true, totalusers: g.playerCount, startgame: false, host: (g.host != null && element.player.id == g.host.id) });
+                var _pl = new Payload_1.Payload(element.user, 'joinRoom', { grid: g.id, newuser: true, totalusers: g.playerCount, startgame: false, host: (g.host != null && element.id == g.host.id) });
                 md.send(_pl);
             });
         }

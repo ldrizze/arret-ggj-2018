@@ -40,7 +40,7 @@ Services.add({name:"MainDriver", obj:main_driver});
 log.inf("MainDriver service registered")
 /* Functionality */
 log.inf("Importing functionality")
-import {Actions} from "./Actions"
+
 import {Events} from "./Events"
 import {Observers} from "./Observers"
 
@@ -56,6 +56,9 @@ Observers.foreach((obj:any, index:any) => {
 		}
 	}
 })
+
+/* Import Actions */
+import {Actions} from "./Actions"
 
 /* Control vars */
 let _users_id = 1;

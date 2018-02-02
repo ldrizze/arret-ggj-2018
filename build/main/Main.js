@@ -24,7 +24,6 @@ log.inf("Gameroom service registered");
 Services_1.Services.add({ name: "MainDriver", obj: main_driver });
 log.inf("MainDriver service registered");
 log.inf("Importing functionality");
-var Actions_1 = require("./Actions");
 var Events_1 = require("./Events");
 var Observers_1 = require("./Observers");
 log.inf("Registering Observers in events");
@@ -38,6 +37,7 @@ Observers_1.Observers.foreach(function (obj, index) {
         }
     }
 });
+var Actions_1 = require("./Actions");
 var _users_id = 1;
 log.inf("Initializing drivers");
 var port_to_listen = parseInt(process.env.PORT) || 8000;

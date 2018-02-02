@@ -84,7 +84,7 @@ export class MakeMatch extends Action{
 			this.log.dbg('Broadcast new user entering and match start to all gameroom\'s players');
 			g.gameStarted = true;
 			g.players.foreach((element, index) => {
-				let _pl = new Payload(element.user, 'joinRoom', { grid: g.id, newuser: true, totalusers: g.playerCount, startgame: true, host: (g.host != null && element.player.id == g.host.id) })
+				let _pl = new Payload(element.user, 'joinRoom', { grid: g.id, newuser: true, totalusers: g.playerCount, startgame: true, host: (g.host != null && element.id == g.host.id) })
 				md.send(_pl)
 			});
 
@@ -92,7 +92,7 @@ export class MakeMatch extends Action{
 			// TO-DO: broadcast entrada de usuário
 			this.log.dbg('Broadcast new user entering to all gameroom\'s players');
 			g.players.foreach((element, index) => {
-				let _pl = new Payload(element.user, 'joinRoom', { grid: g.id, newuser: true, totalusers: g.playerCount, startgame: false, host: (g.host != null && element.player.id == g.host.id) })
+				let _pl = new Payload(element.user, 'joinRoom', { grid: g.id, newuser: true, totalusers: g.playerCount, startgame: false, host: (g.host != null && element.id == g.host.id) })
 				md.send(_pl)
 			});
 		}
