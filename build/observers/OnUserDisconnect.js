@@ -36,7 +36,7 @@ var OnUserDisconnect = (function (_super) {
                 this.log.dbg("Unset player", _user.player);
                 var _d_1 = this.MainDriver;
                 var _ps_1 = [];
-                var _g = _user.gameroom;
+                var _g = _user.player.gameroom;
                 if (_user.player.gameroom != null && _user.player.gameroom.gameStarted) {
                     _user.player.gameroom.players.foreach(function (element, index) {
                         if (element.id == _user.player.id)

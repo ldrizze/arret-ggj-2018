@@ -22,7 +22,7 @@ export class OnUserDisconnect extends Observer{
 				this.log.dbg("Unset player", _user.player);
 				let _d = this.MainDriver;
 				let _ps = [];
-				let _g = _user.gameroom;
+				let _g = _user.player.gameroom;
 
 				/* If has gameroom and the game is running */
 				if(_user.player.gameroom != null && _user.player.gameroom.gameStarted){
