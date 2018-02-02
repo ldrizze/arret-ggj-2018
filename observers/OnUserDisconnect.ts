@@ -30,7 +30,7 @@ export class OnUserDisconnect extends Observer{
 						let _pld = new Payload(element.user, 'abortGame', {'errormsg': 'A player has been disconected from the game'});
 						_d.send(_pld);
 
-						element.gameroom.removePlayer(element);
+						if(element.gameroom != null) element.gameroom.removePlayer(element);
 					});
 				}else if(_user.player.gameroom != null){
 					_user.player.gameroom.removePlayer(_user.player);
