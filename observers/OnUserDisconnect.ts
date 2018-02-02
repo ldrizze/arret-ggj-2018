@@ -32,10 +32,7 @@ export class OnUserDisconnect extends Observer{
 
 						element.gameroom.removePlayer(element);
 					});
-				}
-
-				/* Unset player */
-				if(_user.player.gameroom != null){
+				}else if(_user.player.gameroom != null){
 					_user.player.gameroom.removePlayer(_user.player);
 				}
 				_user.destroyPlayer()

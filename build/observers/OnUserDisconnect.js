@@ -45,7 +45,7 @@ var OnUserDisconnect = (function (_super) {
                         element.gameroom.removePlayer(element);
                     });
                 }
-                if (_user.player.gameroom != null) {
+                else if (_user.player.gameroom != null) {
                     _user.player.gameroom.removePlayer(_user.player);
                 }
                 _user.destroyPlayer();
