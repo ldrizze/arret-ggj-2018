@@ -36,6 +36,7 @@ var OnUserDisconnect = (function (_super) {
                 this.log.dbg("Unset player", _user.player);
                 var _d_1 = this.MainDriver;
                 var _ps_1 = [];
+                var _g = _user.gameroom;
                 if (_user.player.gameroom != null && _user.player.gameroom.gameStarted) {
                     _user.player.gameroom.players.foreach(function (element, index) {
                         var _pld = new Payload_1.Payload(element.user, 'abortGame', { 'errormsg': 'A player has been disconected from the game' });
@@ -44,7 +45,7 @@ var OnUserDisconnect = (function (_super) {
                     });
                     this.log.dbg("Gameroom players", (_user.player.gameroom.players ? _user.player.gameroom.players.length : 0));
                     for (var i in _ps_1) {
-                        _user.player.gameroom.removePlayer(_ps_1[i]);
+                        _g.removePlayer(_ps_1[i]);
                     }
                 }
                 _user.unsetPlayer();
@@ -52,7 +53,7 @@ var OnUserDisconnect = (function (_super) {
         }
     };
     OnUserDisconnect = __decorate([
-        Services_1.ServiceDecorators.service(['MainDriver'])
+        Services_1.ServiceDecorators.service(['MainDriver', 'Gamerooms'])
     ], OnUserDisconnect);
     return OnUserDisconnect;
 }(Observer_1.Observer));

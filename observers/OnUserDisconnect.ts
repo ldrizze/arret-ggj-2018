@@ -6,7 +6,7 @@ import {Payload} from '../classes/Payload'
 import {ServiceDecorators} from '../classes/Services'
 import {Driver} from '../classes/Driver'
 
-@ServiceDecorators.service(['MainDriver'])
+@ServiceDecorators.service(['MainDriver', 'Gamerooms'])
 export class OnUserDisconnect extends Observer{
 	private log:Log = new Log("Observer.OnUserDisconnect")
 
@@ -22,6 +22,7 @@ export class OnUserDisconnect extends Observer{
 				this.log.dbg("Unset player", _user.player);
 				let _d = this.MainDriver;
 				let _ps = [];
+				let _g = _user.gameroom;
 
 				/* If has gameroom and the game is running */
 				if(_user.player.gameroom != null && _user.player.gameroom.gameStarted){
@@ -33,7 +34,7 @@ export class OnUserDisconnect extends Observer{
 
 					this.log.dbg("Gameroom players", (_user.player.gameroom.players ? _user.player.gameroom.players.length : 0))
 					for(let i in _ps){
-						_user.player.gameroom.removePlayer(_ps[i])
+						_g.removePlayer(_ps[i])
 					}
 				}
 
