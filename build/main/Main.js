@@ -38,12 +38,12 @@ Observers_1.Observers.foreach(function (obj, index) {
     }
 });
 var Actions_1 = require("./Actions");
-var _users_id = 1;
+var _users_id = 0;
 log.inf("Initializing drivers");
 var port_to_listen = parseInt(process.env.PORT) || 8000;
 function onConnect(client_id) {
     log.inf("Registering new connection: ", client_id);
-    var _user = new User_1.User(++_users_id, client_id);
+    var _user = new User_1.User((++_users_id).toString(), client_id);
     Users.add(_user);
     return _user.id;
 }
@@ -73,7 +73,7 @@ function onClose(client_id) {
     log.inf("User had been disconnected");
     var _user = Users.findBy('client_id', client_id);
     Events_1.Events.find('userDisconnected').attach("user", _user).notify();
-    log.dbg("User", _user.id, "been removed?", Users.remove(_user.id.toString()));
+    log.dbg("User", _user.id, "been removed?", Users.remove(_user.id));
     log.dbg("Users connected on the server", Users.length);
 }
 log.inf("Main driver instancied successfully");

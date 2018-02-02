@@ -7,7 +7,7 @@ export class User{
     private _driver:Driver;
     private _is_guest:boolean = true;
 
-    constructor(private _id:number, private _client_id:string){}
+    constructor(private _id:string, private _client_id:string){}
 
     get player(){
     	return this._player;
