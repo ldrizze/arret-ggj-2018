@@ -26,13 +26,15 @@ export class OnUserDisconnect extends Observer{
 				if(_user.player.gameroom != null && _user.player.gameroom.gameStarted){
 					_user.player.gameroom.gameStarted = false;
 					_user.player.gameroom.players.foreach((element, index) => {
-						if(!element) return true;
+						if(element.id == _user.player.id) return true;
 						let _pld = new Payload(element.user, 'abortGame', {'errormsg': 'A player has been disconected from the game'});
 						_d.send(_pld);
 
 						if(element.gameroom != null) element.gameroom.removePlayer(element);
 					});
-				}else if(_user.player.gameroom != null){
+				}
+
+				if(_user.player.gameroom != null){
 					_user.player.gameroom.removePlayer(_user.player);
 				}
 				_user.destroyPlayer()

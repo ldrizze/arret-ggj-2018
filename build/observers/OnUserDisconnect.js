@@ -38,7 +38,7 @@ var OnUserDisconnect = (function (_super) {
                 if (_user.player.gameroom != null && _user.player.gameroom.gameStarted) {
                     _user.player.gameroom.gameStarted = false;
                     _user.player.gameroom.players.foreach(function (element, index) {
-                        if (!element)
+                        if (element.id == _user.player.id)
                             return true;
                         var _pld = new Payload_1.Payload(element.user, 'abortGame', { 'errormsg': 'A player has been disconected from the game' });
                         _d_1.send(_pld);
@@ -46,7 +46,7 @@ var OnUserDisconnect = (function (_super) {
                             element.gameroom.removePlayer(element);
                     });
                 }
-                else if (_user.player.gameroom != null) {
+                if (_user.player.gameroom != null) {
                     _user.player.gameroom.removePlayer(_user.player);
                 }
                 _user.destroyPlayer();
