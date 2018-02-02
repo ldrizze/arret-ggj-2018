@@ -39,7 +39,7 @@ export class SocketIO extends Driver{
 
 		delete _d.payload.action;
 
-		this.log.dbg("Sending payload to", payload.user.client_id, _d.action, payload)
+		this.log.dbg("Sending payload to", payload.user.client_id, JSON.stringify(_d))
 
 		let _sock = this.sockets.find(payload.user.client_id);
 		if(_sock){

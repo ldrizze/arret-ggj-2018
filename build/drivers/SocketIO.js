@@ -40,7 +40,7 @@ var SocketIO = (function (_super) {
             payload: payload.data
         };
         delete _d.payload.action;
-        this.log.dbg("Sending payload to", payload.user.client_id, _d.action, payload);
+        this.log.dbg("Sending payload to", payload.user.client_id, JSON.stringify(_d));
         var _sock = this.sockets.find(payload.user.client_id);
         if (_sock) {
             _sock.s.emit('action', _d);
