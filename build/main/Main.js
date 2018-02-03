@@ -49,7 +49,7 @@ function onConnect(client_id) {
 }
 function onReceive(client_id, data) {
     log.inf("Routing received data from: ", client_id);
-    if (!data.action || !(data instanceof Object) || !Actions_1.Actions.exists(data.action)) {
+    if (!data || !data.action || !(data instanceof Object) || !Actions_1.Actions.exists(data.action)) {
         log.wrn("Action not found", data.action);
         return false;
     }

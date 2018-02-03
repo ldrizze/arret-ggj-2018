@@ -44,30 +44,20 @@
 	"buffers":
 	[
 		{
-			"file": "actions/MakeMatch.ts",
+			"file": "/run/media/drizze/Backup/Projetos/SoldatSniff/sdtdump.js",
 			"settings":
 			{
-				"buffer_size": 3731,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
+				"buffer_size": 712,
+				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "actions/PlaceDrone.ts",
+			"file": "/run/media/drizze/Backup/Projetos/SoldatSniff/sdtdmpcompare",
 			"settings":
 			{
-				"buffer_size": 2127,
+				"buffer_size": 1292,
 				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "classes/Gameroom.ts",
-			"settings":
-			{
-				"buffer_size": 2014,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
+				"line_ending": "Windows"
 			}
 		}
 	],
@@ -98,8 +88,8 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 284.0,
-		"last_filter": "html",
+		"height": 46.0,
+		"last_filter": "",
 		"selected_items":
 		[
 			[
@@ -157,25 +147,28 @@
 	],
 	"file_history":
 	[
+		"/home/drizze/Downloads/remp_wp.sql",
+		"/home/drizze/arretggj2018/actions/GameplayLoaded.ts",
+		"/home/drizze/arretggj2018/main/Events.ts",
+		"/home/drizze/arretggj2018/actions/MakeMatch.ts",
+		"/home/drizze/arretggj2018/actions/PlaceDrone.ts",
+		"/home/drizze/arretggj2018/observers/OnUserDisconnect.ts",
+		"/home/drizze/arretggj2018/classes/Gameroom.ts",
 		"/home/drizze/arretggj2018/classes/Player.ts",
 		"/home/drizze/arretggj2018/main/Main.ts",
-		"/home/drizze/arretggj2018/actions/GameplayLoaded.ts",
 		"/home/drizze/arretggj2018/classes/Payload.ts",
 		"/home/drizze/arretggj2018/classes/Driver.ts",
 		"/home/drizze/arretggj2018/tests/socketio.ts",
 		"/home/drizze/arretggj2018/tests/vrsocketio.ts",
 		"/home/drizze/arretggj2018/drivers/SocketIO.ts",
-		"/home/drizze/arretggj2018/observers/OnUserDisconnect.ts",
 		"/home/drizze/arretggj2018/main/Actions.ts",
 		"/home/drizze/arretggj2018/actions/MoveAlien.ts",
 		"/home/drizze/arretggj2018/classes/Timer.ts",
 		"/home/drizze/arretggj2018/actions/Tick.ts",
-		"/home/drizze/arretggj2018/classes/Gameroom.ts",
 		"/home/drizze/arretggj2018/classes/Vector3.ts",
 		"/home/drizze/arretggj2018/classes/Action.ts",
 		"/home/drizze/arretggj2018/classes/GameObject.ts",
 		"/home/drizze/arretggj2018/tsconfig.json",
-		"/home/drizze/arretggj2018/actions/MakeMatch.ts",
 		"/home/drizze/arretggj2018/actions/Route.ts",
 		"/run/media/drizze/Backup/Projetos/Rumo NI/manutencao.html",
 		"/home/drizze/arretggj2018/classes/User.ts",
@@ -212,7 +205,7 @@
 	],
 	"find":
 	{
-		"height": 50.0
+		"height": 26.0
 	},
 	"find_in_files":
 	{
@@ -287,97 +280,64 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 1,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "actions/MakeMatch.ts",
+					"file": "/run/media/drizze/Backup/Projetos/SoldatSniff/sdtdump.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3731,
+						"buffer_size": 712,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2484,
-								2484
+								0,
+								0
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/TypeScript/TypeScript.tmLanguage",
-							"translate_tabs_to_spaces": false,
-							"use_tab_stops": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 1233.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "actions/PlaceDrone.ts",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2127,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1853,
-								1853
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/TypeScript/TypeScript.tmLanguage",
-							"translate_tabs_to_spaces": false,
-							"use_tab_stops": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 399.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "classes/Gameroom.ts",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2014,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								408,
-								408
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/TypeScript/TypeScript.tmLanguage",
-							"translate_tabs_to_spaces": false,
-							"use_tab_stops": false
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "/run/media/drizze/Backup/Projetos/SoldatSniff/sdtdmpcompare",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1292,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1032,
+								1039
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
 					"type": "text"
 				}
 			]
@@ -440,12 +400,16 @@
 		"selected_items":
 		[
 			[
-				"player.ts",
-				"classes/Player.ts"
-			],
-			[
 				"gameroom",
 				"classes/Gameroom.ts"
+			],
+			[
+				"onuser",
+				"observers/OnUserDisconnect.ts"
+			],
+			[
+				"player.ts",
+				"classes/Player.ts"
 			],
 			[
 				"makema",
