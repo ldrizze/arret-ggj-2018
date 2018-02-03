@@ -1,6 +1,8 @@
 import {Player} 	from "./Player"
 import {Collection} from "./Collection"
 import {Log} from "./Logger"
+import {GameObject} from "./GameObject"
+import {Timer} from "./Timer"
 
 
 export class Gameroom{
@@ -9,6 +11,9 @@ export class Gameroom{
 	private _host 		: Player;
 	public players 		: Collection<Player>;
 	public gameStarted 	: boolean = false;
+	public drones		: Collection<GameObject>;
+	public timer		: Timer;
+
 	private log			: Log = new Log("Gameroom");
 	
 	constructor(
@@ -18,6 +23,8 @@ export class Gameroom{
 	){
 		this.players = new Collection<Player>("id")
 		this._id = this.makeID()
+		this.drones = new Collection<GameObject>("none")
+		this.timer = new Timer;
 	}
 	
 	public addPlayer(player:Player){
@@ -67,6 +74,19 @@ export class Gameroom{
 
 	public unsetHost(){
 		this._host = null;
+	}
+
+	public allPlayersAreReady():boolean{
+		let rdy = true;
+		if(this.players.length > 0){
+			this.players.foreach((p:Player) => {
+				if(!p.ready){
+					rdy = false;
+					return false;
+				}
+			});
+		}
+		return rdy;
 	}
 
 	private makeID() {

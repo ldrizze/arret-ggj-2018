@@ -19,6 +19,7 @@ var Player = (function (_super) {
         var _this = _super.call(this) || this;
         _this._id = "-1";
         _this.guest = true;
+        _this.ready = false;
         _this.input = {
             position: new Vector3_1.Vector3,
             rotation: new Vector3_1.Vector3

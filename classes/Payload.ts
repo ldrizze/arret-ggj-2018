@@ -39,6 +39,19 @@ export class Payload{
     public toString(){
         return JSON.stringify(this.data);
     }
+
+    public static createRoomPayload(gr:Gameroom, action:string, data:any):Array<Payload>{
+        let payload_list = new Array<Payload>();
+        if(gr.playerCount > 0){
+            gr.players.foreach((player, index) => {
+                payload_list.push(new Payload(player.user, action, data));
+            });
+        }else{
+            return null;
+        }
+
+        return payload_list;
+    }
     
 }
 

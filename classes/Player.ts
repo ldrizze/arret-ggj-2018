@@ -10,6 +10,7 @@ export class Player extends GameObject{
     private _gameroom : Gameroom;
     private _user : User;
     private guest : boolean = true;
+    public ready : boolean = false;
     private input : object = {
         position : new Vector3,
         rotation : new Vector3

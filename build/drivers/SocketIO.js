@@ -10,10 +10,11 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var socketIO = require("socket.io");
 var Driver_1 = require("../classes/Driver");
+var Payload_1 = require("../classes/Payload");
 var Collection_1 = require("../classes/Collection");
 var Logger_1 = require("../classes/Logger");
+var socketIO = require("socket.io");
 var SocketIO = (function (_super) {
     __extends(SocketIO, _super);
     function SocketIO() {
@@ -32,21 +33,29 @@ var SocketIO = (function (_super) {
         this.port = port;
         this.app.listen(port);
     };
-    SocketIO.prototype.send = function (payload) {
-        if (payload.is_received)
-            this.log.wrn("Returning a received payload");
-        var _d = {
-            action: payload.data.action,
-            payload: payload.data
-        };
-        delete _d.payload.action;
-        this.log.dbg("Sending payload to", payload.user.client_id, JSON.stringify(_d));
-        var _sock = this.sockets.find(payload.user.client_id);
-        if (_sock) {
-            _sock.s.emit('action', _d);
+    SocketIO.prototype.send = function (p) {
+        if (p instanceof Payload_1.Payload) {
+            var payload = p;
+            if (payload.is_received)
+                this.log.wrn("Returning a received payload");
+            var _d = {
+                action: payload.data.action,
+                payload: Object.assign({}, payload.data)
+            };
+            delete _d.payload.action;
+            this.log.dbg("Sending payload to", payload.user.client_id, JSON.stringify(_d));
+            var _sock = this.sockets.find(payload.user.client_id);
+            if (_sock) {
+                _sock.s.emit('action', _d);
+            }
+            else {
+                this.log.err("Socket not found for client_id", payload.user.client_id);
+            }
         }
-        else {
-            this.log.err("Socket not found for client_id", payload.user.client_id);
+        else if (p instanceof Array) {
+            for (var i in p) {
+                this.send(p[i]);
+            }
         }
     };
     SocketIO.prototype.close = function (socket) {
@@ -62,7 +71,7 @@ var SocketIO = (function (_super) {
         __io_instance.doReceive(this, data);
     };
     SocketIO.prototype.doReceive = function (socket, data) {
-        this.log.dbg("Data received from", socket.id, data);
+        this.log.dbg("Data received from", socket.id, JSON.stringify(data));
         this.onReceiveFn(socket.id, data);
     };
     SocketIO.prototype.onClose = function () {

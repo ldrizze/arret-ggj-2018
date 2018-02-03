@@ -60,6 +60,18 @@ var Payload = (function () {
     Payload.prototype.toString = function () {
         return JSON.stringify(this.data);
     };
+    Payload.createRoomPayload = function (gr, action, data) {
+        var payload_list = new Array();
+        if (gr.playerCount > 0) {
+            gr.players.foreach(function (player, index) {
+                payload_list.push(new Payload(player.user, action, data));
+            });
+        }
+        else {
+            return null;
+        }
+        return payload_list;
+    };
     return Payload;
 }());
 exports.Payload = Payload;

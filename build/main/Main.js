@@ -50,7 +50,7 @@ function onConnect(client_id) {
 function onReceive(client_id, data) {
     log.inf("Routing received data from: ", client_id);
     if (!data.action || !(data instanceof Object) || !Actions_1.Actions.exists(data.action)) {
-        log.err("Action not found", data.action);
+        log.wrn("Action not found", data.action);
         return false;
     }
     var _user = Users.findBy('client_id', client_id);
@@ -65,7 +65,7 @@ function onReceive(client_id, data) {
         return true;
     }
     else {
-        log.err("User nout found");
+        log.wrn("User nout found");
     }
     return false;
 }

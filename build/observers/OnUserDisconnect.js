@@ -47,10 +47,16 @@ var OnUserDisconnect = (function (_super) {
                     });
                     this.log.dbg("Gameroom players", (_user.player.gameroom.players ? _user.player.gameroom.players.length : 0));
                     for (var i in _ps_1) {
+                        this.log.dbg("Removing player", _ps_1[i]);
                         _g.removePlayer(_ps_1[i]);
+                        this.log.dbg("Destroying player in User", _ps_1[i].user);
+                        _ps_1[i].user.destroyPlayer();
                     }
                 }
-                _user.destroyPlayer();
+                this.log.dbg("gameroom.gameStarted set to false");
+                _g.gameStarted = false;
+                this.log.dbg("cleaning up drones");
+                _g.drones.clear();
             }
         }
     };

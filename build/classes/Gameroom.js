@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var Collection_1 = require("./Collection");
 var Logger_1 = require("./Logger");
+var Timer_1 = require("./Timer");
 var Gameroom = (function () {
     function Gameroom(name, maxPlayers, privategame) {
         if (maxPlayers === void 0) { maxPlayers = 3; }
@@ -13,6 +14,8 @@ var Gameroom = (function () {
         this.log = new Logger_1.Log("Gameroom");
         this.players = new Collection_1.Collection("id");
         this._id = this.makeID();
+        this.drones = new Collection_1.Collection("none");
+        this.timer = new Timer_1.Timer;
     }
     Gameroom.prototype.addPlayer = function (player) {
         player.setGameroom(this);
@@ -70,6 +73,18 @@ var Gameroom = (function () {
     };
     Gameroom.prototype.unsetHost = function () {
         this._host = null;
+    };
+    Gameroom.prototype.allPlayersAreReady = function () {
+        var rdy = true;
+        if (this.players.length > 0) {
+            this.players.foreach(function (p) {
+                if (!p.ready) {
+                    rdy = false;
+                    return false;
+                }
+            });
+        }
+        return rdy;
     };
     Gameroom.prototype.makeID = function () {
         var text = "";

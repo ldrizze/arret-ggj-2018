@@ -35,11 +35,18 @@ export class OnUserDisconnect extends Observer{
 
 					this.log.dbg("Gameroom players", (_user.player.gameroom.players ? _user.player.gameroom.players.length : 0))
 					for(let i in _ps){
+						this.log.dbg("Removing player", _ps[i])
 						_g.removePlayer(_ps[i])
+						this.log.dbg("Destroying player in User", _ps[i].user)
+						_ps[i].user.destroyPlayer()
 					}
 				}
 
-				_user.destroyPlayer();
+				/* Clear gameroom.gameStarted and make it free */
+				this.log.dbg("gameroom.gameStarted set to false");
+				_g.gameStarted = false;
+				this.log.dbg("cleaning up drones")
+				_g.drones.clear();
 			}
 		}
 	}

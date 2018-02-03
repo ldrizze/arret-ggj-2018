@@ -1,9 +1,9 @@
-import socketIO = require("socket.io")
 import {Driver} from "../classes/Driver"
 import {Payload} from "../classes/Payload"
 import {Collection} from "../classes/Collection"
 import {Log} from "../classes/Logger"
 
+let socketIO = require("socket.io");
 export class SocketIO extends Driver{
 
 	private app:any;
@@ -29,23 +29,31 @@ export class SocketIO extends Driver{
 		this.app.listen(port)
 	}
 
-	public send(payload:Payload):void{
-		if(payload.is_received) this.log.wrn("Returning a received payload")
+	public send(p:any):void{
+		if(p instanceof Payload){
+			let payload:Payload = p;
 
-		let _d = {
-			action: payload.data.action,
-			payload: payload.data
-		}
+			if(payload.is_received) this.log.wrn("Returning a received payload")
 
-		delete _d.payload.action;
+			let _d = {
+				action: payload.data.action,
+				payload: (<any>Object).assign({}, payload.data)
+			}
 
-		this.log.dbg("Sending payload to", payload.user.client_id, JSON.stringify(_d))
+			delete _d.payload.action;
 
-		let _sock = this.sockets.find(payload.user.client_id);
-		if(_sock){
-			_sock.s.emit('action', _d)
-		}else{
-			this.log.err("Socket not found for client_id", payload.user.client_id)
+			this.log.dbg("Sending payload to", payload.user.client_id, JSON.stringify(_d))
+
+			let _sock = this.sockets.find(payload.user.client_id);
+			if(_sock){
+				_sock.s.emit('action', _d)
+			}else{
+				this.log.err("Socket not found for client_id", payload.user.client_id)
+			}
+		}else if(p instanceof Array){
+			for(let i in p){
+				this.send(p[i]);
+			}
 		}
 	}
 
@@ -70,7 +78,7 @@ export class SocketIO extends Driver{
 	}
 
 	private doReceive(socket:any, data:any){
-		this.log.dbg("Data received from", socket.id, data)
+		this.log.dbg("Data received from", socket.id, JSON.stringify(data))
 		this.onReceiveFn(socket.id, data);
 	}
 
