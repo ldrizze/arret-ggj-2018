@@ -84,10 +84,10 @@ function onConnect(client_id:string){
 * onReceive function is responsbile for the new messages from users,
 * propagating to Actions and Events
 */
-function onReceive(client_id:string, data:{action:string}){
+function onReceive(client_id:string, data:any){
 	log.inf("Routing received data from: ", client_id);
 	if(!data || !data.action || !(data instanceof Object) || !Actions.exists(data.action)){
-		log.wrn("Action not found", data.action)
+		log.wrn("Action not found", JSON.stringify(data));
 		return false;
 	}
 	let _user = Users.findBy('client_id', client_id);
