@@ -5,8 +5,9 @@ import {User} from '../classes/User'
 import {Payload} from '../classes/Payload'
 import {ServiceDecorators} from '../classes/Services'
 import {Driver} from '../classes/Driver'
+import {Gameroom} from '../classes/Gameroom'
 
-@ServiceDecorators.service(['MainDriver', 'Gamerooms'])
+@ServiceDecorators.service(['MainDriver'])
 export class OnUserDisconnect extends Observer{
 	private log:Log = new Log("Observer.OnUserDisconnect")
 
@@ -22,7 +23,7 @@ export class OnUserDisconnect extends Observer{
 				this.log.dbg("Unset player", _user.player);
 				let _d = this.MainDriver;
 				let _ps = [];
-				let _g = _user.player.gameroom;
+				let _g:Gameroom = _user.player.gameroom;
 
 				/* If has gameroom and the game is running */
 				if(_user.player.gameroom != null && _user.player.gameroom.gameStarted){
@@ -45,8 +46,10 @@ export class OnUserDisconnect extends Observer{
 				/* Clear gameroom.gameStarted and make it free */
 				this.log.dbg("gameroom.gameStarted set to false");
 				_g.gameStarted = false;
-				this.log.dbg("cleaning up drones")
+				this.log.dbg("cleaning up drones");
 				_g.drones.clear();
+				this.log.dbg("cleaning uo player colors");
+				_g.clearColors();
 			}
 		}
 	}

@@ -88,6 +88,10 @@ var Gameroom = (function () {
         }
         return rdy;
     };
+    Gameroom.prototype.clearColors = function () {
+        this.red = false;
+        this.blue = false;
+    };
     Gameroom.prototype.makeID = function () {
         var text = "";
         var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";

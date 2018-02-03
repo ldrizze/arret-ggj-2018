@@ -57,11 +57,13 @@ var OnUserDisconnect = (function (_super) {
                 _g.gameStarted = false;
                 this.log.dbg("cleaning up drones");
                 _g.drones.clear();
+                this.log.dbg("cleaning uo player colors");
+                _g.clearColors();
             }
         }
     };
     OnUserDisconnect = __decorate([
-        Services_1.ServiceDecorators.service(['MainDriver', 'Gamerooms'])
+        Services_1.ServiceDecorators.service(['MainDriver'])
     ], OnUserDisconnect);
     return OnUserDisconnect;
 }(Observer_1.Observer));

@@ -91,7 +91,12 @@ export class Gameroom{
 		return rdy;
 	}
 
-	private makeID() {
+	public clearColors():void{
+		this.red = false;
+		this.blue = false;
+	}
+
+	private makeID():string{
 		var text = "";
 		var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
