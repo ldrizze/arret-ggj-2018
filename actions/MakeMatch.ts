@@ -76,12 +76,16 @@ export class MakeMatch extends Action{
 		/* Atribui a cor do player */
 		if(payload.data.type == 'mobile'){
 			if(!g.blue){
-				p.color = 'b';
+				p.color = 'blue';
 				g.blue = true;
 			}else if(!g.red){
-				p.color = 'r';
+				p.color = 'red';
 				g.red = true;
 			}
+
+			/* Send player color */
+			let _pl = new Payload(payload.user, 'setColor', { color: p.color });
+			this.MainDriver.send(_pl);
 		}
 
 		g.addPlayer(payload.user.player); // adiciona o player à sala
@@ -103,11 +107,14 @@ export class MakeMatch extends Action{
 			// TO-DO: broadcast entrada de usuário
 			this.log.dbg('Broadcast new user entering to all gameroom\'s players');
 			g.players.foreach((element, index) => {
-				let _pl = new Payload(element.user, 'joinRoom', { grid: g.id, newuser: true, totalusers: g.playerCount, startgame: false, host: (g.host != null && element.id == g.host.id) })
-				md.send(_pl)
+				if(element.id != p.id){
+					let _pl = new Payload(element.user, 'joinRoom', { grid: g.id, newuser: true, totalusers: g.playerCount, startgame: false, host: (g.host != null && element.id == g.host.id) })
+					md.send(_pl)
+				}
 			});
-		}
 
+		}
+		
 		return null;
 	}
 	

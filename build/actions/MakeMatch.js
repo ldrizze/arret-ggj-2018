@@ -70,13 +70,15 @@ var MakeMatch = (function (_super) {
         }
         if (payload.data.type == 'mobile') {
             if (!g.blue) {
-                p.color = 'b';
+                p.color = 'blue';
                 g.blue = true;
             }
             else if (!g.red) {
-                p.color = 'r';
+                p.color = 'red';
                 g.red = true;
             }
+            var _pl = new Payload_1.Payload(payload.user, 'setColor', { color: p.color });
+            this.MainDriver.send(_pl);
         }
         g.addPlayer(payload.user.player);
         if (payload.data.type == 'vr' && !g.host) {
@@ -93,8 +95,10 @@ var MakeMatch = (function (_super) {
         else {
             this.log.dbg('Broadcast new user entering to all gameroom\'s players');
             g.players.foreach(function (element, index) {
-                var _pl = new Payload_1.Payload(element.user, 'joinRoom', { grid: g.id, newuser: true, totalusers: g.playerCount, startgame: false, host: (g.host != null && element.id == g.host.id) });
-                md.send(_pl);
+                if (element.id != p.id) {
+                    var _pl = new Payload_1.Payload(element.user, 'joinRoom', { grid: g.id, newuser: true, totalusers: g.playerCount, startgame: false, host: (g.host != null && element.id == g.host.id) });
+                    md.send(_pl);
+                }
             });
         }
         return null;
