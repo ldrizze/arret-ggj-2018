@@ -51,7 +51,7 @@ var PlaceDrone = (function (_super) {
             var _p_1 = new Array();
             payload.gameroom.players.foreach(function (p, i) {
                 if (p.id != payload.player.id)
-                    _p_1.push(new Payload_1.Payload(p.user, 'placeDrone', { 'x': dp_1.x, 'y': dp_1.y, 'z': dp_1.z }));
+                    _p_1.push(new Payload_1.Payload(p.user, 'placeDrone', { 'x': dp_1.x, 'y': dp_1.y, 'z': dp_1.z, 'color': payload.player.color }));
             });
             if (_p_1.length > 0) {
                 this.MainDriver.send(_p_1);

@@ -13,6 +13,8 @@ export class Gameroom{
 	public gameStarted 	: boolean = false;
 	public drones		: Collection<GameObject>;
 	public timer		: Timer;
+	public blue			: boolean = false;
+	public red 			: boolean = false;
 
 	private log			: Log = new Log("Gameroom");
 	

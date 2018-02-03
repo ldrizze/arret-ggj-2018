@@ -28,6 +28,7 @@ var Player = (function (_super) {
         _this.gameIsFocused = true;
         _this._id = _this.makeID();
         _this.log.inf("CREATING NEW PLAYER", _this._id);
+        _this.color = '';
         return _this;
     }
     Object.defineProperty(Player.prototype, "gameroom", {

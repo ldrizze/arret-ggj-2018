@@ -50,7 +50,7 @@ export class PlaceDrone extends Action{
 			let dp = drone.getPosition();
 			let _p:Array<Payload> = new Array<Payload>();
 			payload.gameroom.players.foreach((p:Player,i) => {
-				if(p.id != payload.player.id) _p.push(new Payload(p.user, 'placeDrone', {'x': dp.x, 'y': dp.y, 'z' : dp.z}));
+				if(p.id != payload.player.id) _p.push(new Payload(p.user, 'placeDrone', {'x': dp.x, 'y': dp.y, 'z' : dp.z, 'color' : payload.player.color}));
 			});
 
 			/* Send payload to another users */ 

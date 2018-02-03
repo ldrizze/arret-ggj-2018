@@ -33,7 +33,7 @@ var MakeMatch = (function (_super) {
         var g = null;
         var p = payload.player;
         var md = this.MainDriver;
-        if (payload.player === null) {
+        if (p === null) {
             payload.user.makePlayer();
             p = payload.user.player;
         }
@@ -68,9 +68,19 @@ var MakeMatch = (function (_super) {
             g = new Gameroom_1.Gameroom("grname", 3, false);
             this.Gamerooms.add(g);
         }
+        if (payload.data.type == 'mobile') {
+            if (!g.blue) {
+                p.color = 'b';
+                g.blue = true;
+            }
+            else if (!g.red) {
+                p.color = 'r';
+                g.red = true;
+            }
+        }
         g.addPlayer(payload.user.player);
         if (payload.data.type == 'vr' && !g.host) {
-            g.setHost(payload.user.player);
+            g.setHost(p);
         }
         if (g.isFull) {
             this.log.dbg('Broadcast new user entering and match start to all gameroom\'s players');

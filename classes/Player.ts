@@ -11,6 +11,7 @@ export class Player extends GameObject{
     private _user : User;
     private guest : boolean = true;
     public ready : boolean = false;
+    public color : string;
     private input : object = {
         position : new Vector3,
         rotation : new Vector3
@@ -22,8 +23,9 @@ export class Player extends GameObject{
 
     constructor(){
         super();
-        this._id = this.makeID()
-        this.log.inf("CREATING NEW PLAYER", this._id)
+        this._id = this.makeID();
+        this.log.inf("CREATING NEW PLAYER", this._id);
+        this.color = '';
     }
 
     get gameroom(){

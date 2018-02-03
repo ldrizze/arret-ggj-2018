@@ -26,7 +26,7 @@ export class MakeMatch extends Action{
 		let md : Driver = this.MainDriver;
 
 		/* Make make player if doesn't has been maked */
-		if(payload.player === null){
+		if(p === null){
 			payload.user.makePlayer();
 			p = payload.user.player;
 		}
@@ -73,10 +73,21 @@ export class MakeMatch extends Action{
 			this.Gamerooms.add(g);
 		}
 
+		/* Atribui a cor do player */
+		if(payload.data.type == 'mobile'){
+			if(!g.blue){
+				p.color = 'b';
+				g.blue = true;
+			}else if(!g.red){
+				p.color = 'r';
+				g.red = true;
+			}
+		}
+
 		g.addPlayer(payload.user.player); // adiciona o player à sala
 
 		if(payload.data.type == 'vr' && !g.host){ // se o player for vr e nao tiver host na sala
-			g.setHost(payload.user.player);
+			g.setHost(p);
 		}
 
 		if(g.isFull){ // Se após a entrada do novo player a sala está completa
