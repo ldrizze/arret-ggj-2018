@@ -44,13 +44,13 @@ export class PlaceDrone extends Action{
 		/* Verifica se as informações estão corretas */
 		if(payload.data && payload.data instanceof Object && payload.data.x && payload.data.y && payload.data.z){
 
-			let drone = new GameObject();
+			let drone = new Drone(payload.data.droneId);
 			drone.setPosition(new Vector3(payload.data.x, payload.data.y, payload.data.z));
 			payload.gameroom.drones.add(drone);
 			let dp = drone.getPosition();
 			let _p:Array<Payload> = new Array<Payload>();
 			payload.gameroom.players.foreach((p:Player,i) => {
-				if(p.id != payload.player.id) _p.push(new Payload(p.user, 'placeDrone', {'x': dp.x, 'y': dp.y, 'z' : dp.z, 'color' : payload.player.color}));
+				if(p.id != payload.player.id) _p.push(new Payload(p.user, 'placeDrone', {'x': dp.x, 'y': dp.y, 'z' : dp.z, 'color' : payload.player.color, droneId: drone.id}));
 			});
 
 			/* Send payload to another users */ 
@@ -63,4 +63,10 @@ export class PlaceDrone extends Action{
 		return null;
 	}
 	
+}
+
+class Drone extends GameObject{
+	constructor(public id:number){
+		super();
+	}
 }

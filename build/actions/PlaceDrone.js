@@ -44,14 +44,14 @@ var PlaceDrone = (function (_super) {
             return null;
         }
         if (payload.data && payload.data instanceof Object && payload.data.x && payload.data.y && payload.data.z) {
-            var drone = new GameObject_1.GameObject();
-            drone.setPosition(new Vector3_1.Vector3(payload.data.x, payload.data.y, payload.data.z));
-            payload.gameroom.drones.add(drone);
-            var dp_1 = drone.getPosition();
+            var drone_1 = new Drone(payload.data.droneId);
+            drone_1.setPosition(new Vector3_1.Vector3(payload.data.x, payload.data.y, payload.data.z));
+            payload.gameroom.drones.add(drone_1);
+            var dp_1 = drone_1.getPosition();
             var _p_1 = new Array();
             payload.gameroom.players.foreach(function (p, i) {
                 if (p.id != payload.player.id)
-                    _p_1.push(new Payload_1.Payload(p.user, 'placeDrone', { 'x': dp_1.x, 'y': dp_1.y, 'z': dp_1.z, 'color': payload.player.color }));
+                    _p_1.push(new Payload_1.Payload(p.user, 'placeDrone', { 'x': dp_1.x, 'y': dp_1.y, 'z': dp_1.z, 'color': payload.player.color, droneId: drone_1.id }));
             });
             if (_p_1.length > 0) {
                 this.MainDriver.send(_p_1);
@@ -65,4 +65,13 @@ var PlaceDrone = (function (_super) {
     return PlaceDrone;
 }(Action_1.Action));
 exports.PlaceDrone = PlaceDrone;
+var Drone = (function (_super) {
+    __extends(Drone, _super);
+    function Drone(id) {
+        var _this = _super.call(this) || this;
+        _this.id = id;
+        return _this;
+    }
+    return Drone;
+}(GameObject_1.GameObject));
 //# sourceMappingURL=PlaceDrone.js.map

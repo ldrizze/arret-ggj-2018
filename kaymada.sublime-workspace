@@ -44,18 +44,10 @@
 	"buffers":
 	[
 		{
-			"file": "/run/media/drizze/Backup/Projetos/SoldatSniff/sdtdump.js",
+			"file": "main/Main.ts",
 			"settings":
 			{
-				"buffer_size": 712,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "/run/media/drizze/Backup/Projetos/SoldatSniff/sdtdmpcompare",
-			"settings":
-			{
-				"buffer_size": 1292,
+				"buffer_size": 4266,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -147,8 +139,17 @@
 	],
 	"file_history":
 	[
-		"/home/drizze/Downloads/remp_wp.sql",
+		"/home/drizze/arretggj2018/actions/Tick.ts",
 		"/home/drizze/arretggj2018/actions/GameplayLoaded.ts",
+		"/run/media/drizze/Backup/Projetos/SoldatSniff/sdtdump.js",
+		"/run/media/drizze/Backup/Projetos/SoldatSniff/sdtdmpcompare",
+		"/run/media/drizze/Backup/Projetos/Rumo NI/backup-2.3.2018_14-50-58_remp/homedir/public_html/wp-config.php",
+		"/home/drizze/temp/footer.php",
+		"/run/media/drizze/Backup/Projetos/Rumo NI/backup-2.3.2018_14-50-58_remp/homedir/public_html/_wp-config.php",
+		"/run/media/drizze/Backup/Projetos/Rumo NI/backup-2.3.2018_14-50-58_remp/homedir/public_html/error_log",
+		"/run/media/drizze/Backup/Projetos/Rumo NI/backup-2.3.2018_14-50-58_remp/mysql/remp_wp.create",
+		"/run/media/drizze/Backup/Projetos/Rumo NI/backup-2.3.2018_14-50-58_remp/proftpdpasswd",
+		"/home/drizze/Downloads/remp_wp.sql",
 		"/home/drizze/arretggj2018/main/Events.ts",
 		"/home/drizze/arretggj2018/actions/MakeMatch.ts",
 		"/home/drizze/arretggj2018/actions/PlaceDrone.ts",
@@ -164,7 +165,6 @@
 		"/home/drizze/arretggj2018/main/Actions.ts",
 		"/home/drizze/arretggj2018/actions/MoveAlien.ts",
 		"/home/drizze/arretggj2018/classes/Timer.ts",
-		"/home/drizze/arretggj2018/actions/Tick.ts",
 		"/home/drizze/arretggj2018/classes/Vector3.ts",
 		"/home/drizze/arretggj2018/classes/Action.ts",
 		"/home/drizze/arretggj2018/classes/GameObject.ts",
@@ -186,7 +186,6 @@
 		"/D/Projetos/2018/GGJ 2018/Server/main/Main.ts",
 		"/D/Projetos/2018/GGJ 2018/Server/package.json",
 		"/D/Projetos/2018/GGJ 2018/Server/kaymada.sublime-project",
-		"/run/media/drizze/Backup/Projetos/SoldatSniff/sdtdump.js",
 		"/home/drizze/ggj2018/Client.java",
 		"/home/drizze/ggj2018/Server.java",
 		"/home/drizze/ggj2018/BugigaSock.java",
@@ -205,7 +204,7 @@
 	],
 	"find":
 	{
-		"height": 26.0
+		"height": 50.0
 	},
 	"find_in_files":
 	{
@@ -280,61 +279,34 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "/run/media/drizze/Backup/Projetos/SoldatSniff/sdtdump.js",
+					"file": "main/Main.ts",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 712,
+						"buffer_size": 4266,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								3026,
+								3026
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
-							"translate_tabs_to_spaces": false
+							"syntax": "Packages/TypeScript/TypeScript.tmLanguage",
+							"translate_tabs_to_spaces": false,
+							"use_tab_stops": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "/run/media/drizze/Backup/Projetos/SoldatSniff/sdtdmpcompare",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1292,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1032,
-								1039
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 1442.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -400,6 +372,10 @@
 		"selected_items":
 		[
 			[
+				"main.ts",
+				"main/Main.ts"
+			],
+			[
 				"gameroom",
 				"classes/Gameroom.ts"
 			],
@@ -446,10 +422,6 @@
 			[
 				"gam",
 				"classes/Gameroom.ts"
-			],
-			[
-				"main.ts",
-				"main/Main.ts"
 			],
 			[
 				"socket",
