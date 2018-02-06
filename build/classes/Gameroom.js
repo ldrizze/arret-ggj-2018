@@ -16,7 +16,7 @@ var Gameroom = (function () {
         this.log = new Logger_1.Log("Gameroom");
         this.players = new Collection_1.Collection("id");
         this._id = this.makeID();
-        this.drones = new Collection_1.Collection("none");
+        this.drones = new Collection_1.Collection("id");
         this.timer = new Timer_1.Timer;
     }
     Gameroom.prototype.addPlayer = function (player) {

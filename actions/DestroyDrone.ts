@@ -12,15 +12,15 @@ import {Vector3} from "../classes/Vector3"
 import {Drone} from "../classes/Drone"
 
 @ServiceDecorators.service(["MainDriver"])
-export class PlaceDrone extends Action{
+export class DestroyDrone extends Action{
 
-	public key:string = "placeDrone";
+	public key:string = "destroyDrone";
 
 	public Users:Collection<User>;
 	public MainDriver:Driver;
 	public Gamerooms:Collection<Gameroom>;
 
-	private log:Log = new Log("Actions.PlaceDrone");
+	private log:Log = new Log("Actions.DestroyDrone");
 
 	public run(payload:Payload):Payload{
 
@@ -43,15 +43,18 @@ export class PlaceDrone extends Action{
 		}
 
 		/* Verifica se as informações estão corretas */
-		if(payload.data && payload.data instanceof Object && payload.data.x && payload.data.y && payload.data.z){
+		if(payload.data && payload.data instanceof Object && payload.data.droneId){
 
-			let drone = new Drone(payload.data.droneId);
-			drone.setPosition(new Vector3(payload.data.x, payload.data.y, payload.data.z));
-			payload.gameroom.drones.add(drone);
-			let dp = drone.getPosition();
+			let drone = payload.gameroom.drones.find(payload.data.droneId);
+
+			if(!drone){
+				this.log.wrn("Drone not found", payload.data.droneId);
+				return null;
+			}
+
 			let _p:Array<Payload> = new Array<Payload>();
 			payload.gameroom.players.foreach((p:Player,i) => {
-				if(p.id != payload.player.id) _p.push(new Payload(p.user, 'placeDrone', {'x': dp.x, 'y': dp.y, 'z' : dp.z, 'color' : payload.player.color, droneId: drone.id}));
+				if(p.id != payload.player.id) _p.push(new Payload(p.user, 'destroyDrone', {droneId: drone.id}));
 			});
 
 			/* Send payload to another users */ 

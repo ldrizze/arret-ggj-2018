@@ -20,17 +20,15 @@ var Action_1 = require("../classes/Action");
 var Payload_1 = require("../classes/Payload");
 var Services_1 = require("../classes/Services");
 var Logger_1 = require("../classes/Logger");
-var Vector3_1 = require("../classes/Vector3");
-var Drone_1 = require("../classes/Drone");
-var PlaceDrone = (function (_super) {
-    __extends(PlaceDrone, _super);
-    function PlaceDrone() {
+var DestroyDrone = (function (_super) {
+    __extends(DestroyDrone, _super);
+    function DestroyDrone() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.key = "placeDrone";
-        _this.log = new Logger_1.Log("Actions.PlaceDrone");
+        _this.key = "destroyDrone";
+        _this.log = new Logger_1.Log("Actions.DestroyDrone");
         return _this;
     }
-    PlaceDrone.prototype.run = function (payload) {
+    DestroyDrone.prototype.run = function (payload) {
         if (!payload.gameroom && !payload.gameroom.allPlayersAreReady()) {
             this.log.wrn("All players aren't ready, wait...");
             return null;
@@ -43,15 +41,16 @@ var PlaceDrone = (function (_super) {
             this.log.wrn("User", payload.user, "trying to place drone, but no game has started");
             return null;
         }
-        if (payload.data && payload.data instanceof Object && payload.data.x && payload.data.y && payload.data.z) {
-            var drone_1 = new Drone_1.Drone(payload.data.droneId);
-            drone_1.setPosition(new Vector3_1.Vector3(payload.data.x, payload.data.y, payload.data.z));
-            payload.gameroom.drones.add(drone_1);
-            var dp_1 = drone_1.getPosition();
+        if (payload.data && payload.data instanceof Object && payload.data.droneId) {
+            var drone_1 = payload.gameroom.drones.find(payload.data.droneId);
+            if (!drone_1) {
+                this.log.wrn("Drone not found", payload.data.droneId);
+                return null;
+            }
             var _p_1 = new Array();
             payload.gameroom.players.foreach(function (p, i) {
                 if (p.id != payload.player.id)
-                    _p_1.push(new Payload_1.Payload(p.user, 'placeDrone', { 'x': dp_1.x, 'y': dp_1.y, 'z': dp_1.z, 'color': payload.player.color, droneId: drone_1.id }));
+                    _p_1.push(new Payload_1.Payload(p.user, 'destroyDrone', { droneId: drone_1.id }));
             });
             if (_p_1.length > 0) {
                 this.MainDriver.send(_p_1);
@@ -59,10 +58,10 @@ var PlaceDrone = (function (_super) {
         }
         return null;
     };
-    PlaceDrone = __decorate([
+    DestroyDrone = __decorate([
         Services_1.ServiceDecorators.service(["MainDriver"])
-    ], PlaceDrone);
-    return PlaceDrone;
+    ], DestroyDrone);
+    return DestroyDrone;
 }(Action_1.Action));
-exports.PlaceDrone = PlaceDrone;
-//# sourceMappingURL=PlaceDrone.js.map
+exports.DestroyDrone = DestroyDrone;
+//# sourceMappingURL=DestroyDrone.js.map

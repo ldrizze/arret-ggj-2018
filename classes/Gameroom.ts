@@ -3,6 +3,7 @@ import {Collection} from "./Collection"
 import {Log} from "./Logger"
 import {GameObject} from "./GameObject"
 import {Timer} from "./Timer"
+import {Drone} from "./Drone"
 
 
 export class Gameroom{
@@ -11,7 +12,7 @@ export class Gameroom{
 	private _host 		: Player;
 	public players 		: Collection<Player>;
 	public gameStarted 	: boolean = false;
-	public drones		: Collection<GameObject>;
+	public drones		: Collection<Drone>;
 	public timer		: Timer;
 	public blue			: boolean = false;
 	public red 			: boolean = false;
@@ -25,7 +26,7 @@ export class Gameroom{
 	){
 		this.players = new Collection<Player>("id")
 		this._id = this.makeID()
-		this.drones = new Collection<GameObject>("none")
+		this.drones = new Collection<Drone>("id")
 		this.timer = new Timer;
 	}
 	

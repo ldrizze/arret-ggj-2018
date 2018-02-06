@@ -2,7 +2,7 @@ export class Collection<T>{
 
 	protected list:Array<T> = new Array;
 
-	constructor(protected key:string, list:Array<T> = null){
+	constructor(protected key:any, list:Array<T> = null){
 		if(list && list.length > 0){
 			for(let i in list){
 				this.add(list[i]);
@@ -14,7 +14,7 @@ export class Collection<T>{
 		this.list.push(new_item);
 	}
 
-	public remove(key:string):boolean{
+	public remove(key:any):boolean{
 		if(this.exists(key)){
 			for(let i = 0; i < this.list.length; i++){
 				if(this.list[i][this.key] == key){
@@ -68,7 +68,7 @@ export class Collection<T>{
 		}
 	}
 
-	public get(key:string):Array<T>{
+	public get(key:any):Array<T>{
 		let rtn = new Array<T>();
 		for(let i = 0; i < this.length; i++){
 			if(this.list[i][this.key] == key) rtn.push(this.list[i])
@@ -105,7 +105,7 @@ export class Collection<T>{
 		return null;
 	}
 
-	public find(key:string):T{
+	public find(key:any):T{
 		for(let i in this.list){
 			if(this.list[i][this.key] == key) return this.list[i]
 		}
