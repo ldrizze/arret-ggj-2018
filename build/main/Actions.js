@@ -7,12 +7,14 @@ var GameplayLoaded_1 = require("../actions/GameplayLoaded");
 var PlaceDrone_1 = require("../actions/PlaceDrone");
 var MoveAlien_1 = require("../actions/MoveAlien");
 var Tick_1 = require("../actions/Tick");
+var DestroyDrone_1 = require("../actions/DestroyDrone");
 exports.Actions = new Collection_1.Collection("key", [
     new MakeMatch_1.MakeMatch(),
     new GameplayLoaded_1.GameplayLoaded(),
     new PlaceDrone_1.PlaceDrone(),
     new MoveAlien_1.MoveAlien(),
     new Tick_1.Tick(),
+    new DestroyDrone_1.DestroyDrone(),
     new Route_1.Route()
 ]);
 //# sourceMappingURL=Actions.js.map
