@@ -41,15 +41,18 @@ export class OnUserDisconnect extends Observer{
 						this.log.dbg("Destroying player in User", _ps[i].user)
 						_ps[i].user.destroyPlayer()
 					}
-				}
 
-				/* Clear gameroom.gameStarted and make it free */
-				this.log.dbg("gameroom.gameStarted set to false");
-				_g.gameStarted = false;
-				this.log.dbg("cleaning up drones");
-				_g.drones.clear();
-				this.log.dbg("cleaning uo player colors");
-				_g.clearColors();
+					/* Clear gameroom.gameStarted and make it free */
+					this.log.dbg("gameroom.gameStarted set to false");
+					_g.gameStarted = false;
+					this.log.dbg("cleaning up drones");
+					_g.drones.clear();
+					this.log.dbg("cleaning uo player colors");
+					_g.clearColors();
+
+				}else if(_user.player.gameroom != null && !_user.player.gameroom.gameStarted){ // Se o jogo não começou
+					_g.removePlayer(_user.player)
+				}
 			}
 		}
 	}

@@ -28,6 +28,10 @@ var Gameroom = (function () {
         if (this.players.remove(player.id)) {
             if (this._host != null && this._host.id == player.id)
                 this.unsetHost();
+            if (this.blue && player.color == "blue")
+                this.blue = false;
+            if (this.red && player.color == "red")
+                this.red = false;
             player.unsetGameroom();
         }
     };
