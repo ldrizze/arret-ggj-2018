@@ -43,6 +43,7 @@ var DestroyDrone = (function (_super) {
         }
         if (payload.data && payload.data instanceof Object && payload.data.droneId) {
             var drone_1 = payload.gameroom.drones.find(payload.data.droneId);
+            this.log.dbg("Destroying drone", drone_1.id, "by player", payload.player.color);
             if (!drone_1) {
                 this.log.wrn("Drone not found", payload.data.droneId);
                 return null;
@@ -56,6 +57,9 @@ var DestroyDrone = (function (_super) {
             if (_p_1.length > 0) {
                 this.MainDriver.send(_p_1);
             }
+        }
+        else {
+            this.log.wrn("Wrong payload data");
         }
         return null;
     };

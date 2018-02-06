@@ -47,6 +47,8 @@ export class DestroyDrone extends Action{
 
 			let drone = payload.gameroom.drones.find(payload.data.droneId);
 
+			this.log.dbg("Destroying drone", drone.id, "by player", payload.player.color);
+
 			if(!drone){
 				this.log.wrn("Drone not found", payload.data.droneId);
 				return null;
@@ -63,6 +65,8 @@ export class DestroyDrone extends Action{
 				this.MainDriver.send(_p);
 			}
 
+		}else{
+			this.log.wrn("Wrong payload data");
 		}
 
 		return null;
