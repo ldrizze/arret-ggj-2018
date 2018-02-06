@@ -45,6 +45,8 @@ export class PlaceDrone extends Action{
 		/* Verifica se as informações estão corretas */
 		if(payload.data && payload.data instanceof Object && payload.data.x && payload.data.y && payload.data.z){
 
+			this.log.dbg("Placing drone", payload.data.droneId, "by player", payload.player.color);
+
 			let drone = new Drone(payload.data.droneId);
 			drone.setPosition(new Vector3(payload.data.x, payload.data.y, payload.data.z));
 			payload.gameroom.drones.add(drone);

@@ -44,6 +44,7 @@ var PlaceDrone = (function (_super) {
             return null;
         }
         if (payload.data && payload.data instanceof Object && payload.data.x && payload.data.y && payload.data.z) {
+            this.log.dbg("Placing drone", payload.data.droneId, "by player", payload.player.color);
             var drone_1 = new Drone_1.Drone(payload.data.droneId);
             drone_1.setPosition(new Vector3_1.Vector3(payload.data.x, payload.data.y, payload.data.z));
             payload.gameroom.drones.add(drone_1);
