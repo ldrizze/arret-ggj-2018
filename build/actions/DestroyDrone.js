@@ -43,11 +43,11 @@ var DestroyDrone = (function (_super) {
         }
         if (payload.data && payload.data instanceof Object && payload.data.droneId) {
             var drone_1 = payload.gameroom.drones.find(payload.data.droneId);
-            this.log.dbg("Destroying drone", drone_1.id, "by player", payload.player.color);
             if (!drone_1) {
                 this.log.wrn("Drone not found", payload.data.droneId);
                 return null;
             }
+            this.log.dbg("Destroying drone", drone_1.id, "by player", payload.player.color);
             var _p_1 = new Array();
             payload.gameroom.players.foreach(function (p, i) {
                 if (p.id != payload.player.id)

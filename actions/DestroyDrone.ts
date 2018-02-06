@@ -47,12 +47,12 @@ export class DestroyDrone extends Action{
 
 			let drone = payload.gameroom.drones.find(payload.data.droneId);
 
-			this.log.dbg("Destroying drone", drone.id, "by player", payload.player.color);
-
 			if(!drone){
 				this.log.wrn("Drone not found", payload.data.droneId);
 				return null;
 			}
+
+			this.log.dbg("Destroying drone", drone.id, "by player", payload.player.color);
 
 			let _p:Array<Payload> = new Array<Payload>();
 			payload.gameroom.players.foreach((p:Player,i) => {
