@@ -52,6 +52,7 @@ var DestroyDrone = (function (_super) {
                 if (p.id != payload.player.id)
                     _p_1.push(new Payload_1.Payload(p.user, 'destroyDrone', { droneId: drone_1.id }));
             });
+            payload.gameroom.drones.remove(drone_1.id);
             if (_p_1.length > 0) {
                 this.MainDriver.send(_p_1);
             }

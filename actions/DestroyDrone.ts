@@ -56,6 +56,7 @@ export class DestroyDrone extends Action{
 			payload.gameroom.players.foreach((p:Player,i) => {
 				if(p.id != payload.player.id) _p.push(new Payload(p.user, 'destroyDrone', {droneId: drone.id}));
 			});
+			payload.gameroom.drones.remove(drone.id);
 
 			/* Send payload to another users */ 
 			if(_p.length > 0){
