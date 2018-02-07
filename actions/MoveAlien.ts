@@ -44,6 +44,11 @@ export class MoveAlien extends Action{
 		/* Verifica se as informações estão corretas */
 		if(payload.data && payload.data instanceof Object && payload.data.x && payload.data.y && payload.data.z){
 
+			if(payload.user.id != payload.gameroom.host.id){
+				this.log.wrn("Payload user is not the host", payload);
+				return null;
+			}
+
 			payload.player.setPosition(new Vector3(payload.data.x, payload.data.y, payload.data.z));
 			let _pp = payload.player.getPosition();
 			let _p:Array<Payload> = new Array<Payload>();
@@ -56,6 +61,8 @@ export class MoveAlien extends Action{
 				this.MainDriver.send(_p);
 			}
 
+		}else{
+			this.log.dbg("No payload data found");
 		}
 
 		return null;

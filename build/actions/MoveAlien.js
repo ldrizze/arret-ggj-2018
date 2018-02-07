@@ -43,6 +43,10 @@ var MoveAlien = (function (_super) {
             return null;
         }
         if (payload.data && payload.data instanceof Object && payload.data.x && payload.data.y && payload.data.z) {
+            if (payload.user.id != payload.gameroom.host.id) {
+                this.log.wrn("Payload user is not the host", payload);
+                return null;
+            }
             payload.player.setPosition(new Vector3_1.Vector3(payload.data.x, payload.data.y, payload.data.z));
             var _pp_1 = payload.player.getPosition();
             var _p_1 = new Array();
@@ -53,6 +57,9 @@ var MoveAlien = (function (_super) {
             if (_p_1.length > 0) {
                 this.MainDriver.send(_p_1);
             }
+        }
+        else {
+            this.log.dbg("No payload data found");
         }
         return null;
     };

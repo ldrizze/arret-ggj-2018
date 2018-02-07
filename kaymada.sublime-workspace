@@ -44,12 +44,65 @@
 	"buffers":
 	[
 		{
-			"file": "main/Main.ts",
+			"file": "actions/DestroyDrone.ts",
 			"settings":
 			{
-				"buffer_size": 4266,
+				"buffer_size": 2250,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "main/Actions.ts",
+			"settings":
+			{
+				"buffer_size": 622,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "classes/Collection.ts",
+			"settings":
+			{
+				"buffer_size": 2456,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "classes/Player.ts",
+			"settings":
+			{
+				"buffer_size": 1524,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "classes/GameObject.ts",
+			"settings":
+			{
+				"buffer_size": 4962,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "actions/PlaceDrone.ts",
+			"settings":
+			{
+				"buffer_size": 2292,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "observers/OnUserDisconnect.ts",
+			"settings":
+			{
+				"buffer_size": 2059,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
 			}
 		}
 	],
@@ -80,10 +133,14 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 46.0,
-		"last_filter": "",
+		"height": 357.0,
+		"last_filter": "type",
 		"selected_items":
 		[
+			[
+				"type",
+				"Set Syntax: TypeScript"
+			],
 			[
 				"html",
 				"Set Syntax: HTML"
@@ -131,6 +188,7 @@
 	[
 		"/home/drizze/arretggj2018",
 		"/home/drizze/arretggj2018/actions",
+		"/home/drizze/arretggj2018/classes",
 		"/home/drizze/arretggj2018/drivers",
 		"/home/drizze/arretggj2018/events",
 		"/home/drizze/arretggj2018/main",
@@ -139,6 +197,12 @@
 	],
 	"file_history":
 	[
+		"/run/media/drizze/HD/Adobe CS6 Master Collection (Mac)/IMPORTANT - READ BEFORE INSTALLING.txt",
+		"/home/drizze/arretggj2018/actions/MakeMatch.ts",
+		"/home/drizze/arretggj2018/classes/Gameroom.ts",
+		"/home/drizze/droidcam.sh",
+		"/home/drizze/arretggj2018/classes/Drone.ts",
+		"/home/drizze/arretggj2018/main/Main.ts",
 		"/home/drizze/arretggj2018/actions/Tick.ts",
 		"/home/drizze/arretggj2018/actions/GameplayLoaded.ts",
 		"/run/media/drizze/Backup/Projetos/SoldatSniff/sdtdump.js",
@@ -151,12 +215,9 @@
 		"/run/media/drizze/Backup/Projetos/Rumo NI/backup-2.3.2018_14-50-58_remp/proftpdpasswd",
 		"/home/drizze/Downloads/remp_wp.sql",
 		"/home/drizze/arretggj2018/main/Events.ts",
-		"/home/drizze/arretggj2018/actions/MakeMatch.ts",
 		"/home/drizze/arretggj2018/actions/PlaceDrone.ts",
 		"/home/drizze/arretggj2018/observers/OnUserDisconnect.ts",
-		"/home/drizze/arretggj2018/classes/Gameroom.ts",
 		"/home/drizze/arretggj2018/classes/Player.ts",
-		"/home/drizze/arretggj2018/main/Main.ts",
 		"/home/drizze/arretggj2018/classes/Payload.ts",
 		"/home/drizze/arretggj2018/classes/Driver.ts",
 		"/home/drizze/arretggj2018/tests/socketio.ts",
@@ -204,7 +265,7 @@
 	],
 	"find":
 	{
-		"height": 50.0
+		"height": 26.0
 	},
 	"find_in_files":
 	{
@@ -218,6 +279,12 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"Tick",
+			"Drone",
+			"placeDrone",
+			"PlaceDrone",
+			"key:string",
+			"payload.data.droneId",
 			"payload.player",
 			"payload.user.player",
 			"MoveAlien",
@@ -279,24 +346,89 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 5,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "main/Main.ts",
+					"file": "actions/DestroyDrone.ts",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 4266,
+						"buffer_size": 2250,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3026,
-								3026
+								1639,
+								1639
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/TypeScript/TypeScript.tmLanguage",
+							"translate_tabs_to_spaces": false,
+							"typescript_plugin_format_options":
+							{
+								"convertTabsToSpaces": false,
+								"indentSize": 4,
+								"tabSize": 4
+							},
+							"use_tab_stops": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 342.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "main/Actions.ts",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 622,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								622,
+								622
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/TypeScript/TypeScript.tmLanguage",
+							"use_tab_stops": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "classes/Collection.ts",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2456,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								212,
+								212
 							]
 						],
 						"settings":
@@ -306,10 +438,131 @@
 							"use_tab_stops": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 1442.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "classes/Player.ts",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1524,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								39,
+								39
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/TypeScript/TypeScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true,
+							"use_tab_stops": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "classes/GameObject.ts",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4962,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1439,
+								1439
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/TypeScript/TypeScript.tmLanguage",
+							"translate_tabs_to_spaces": false,
+							"use_tab_stops": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 435.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "actions/PlaceDrone.ts",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2292,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								787,
+								787
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/TypeScript/TypeScript.tmLanguage",
+							"translate_tabs_to_spaces": false,
+							"use_tab_stops": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 456.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "observers/OnUserDisconnect.ts",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2059,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2004,
+								2004
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/TypeScript/TypeScript.tmLanguage",
+							"translate_tabs_to_spaces": false,
+							"use_tab_stops": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 422.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
 					"type": "text"
 				}
 			]
@@ -372,10 +625,6 @@
 		"selected_items":
 		[
 			[
-				"main.ts",
-				"main/Main.ts"
-			],
-			[
 				"gameroom",
 				"classes/Gameroom.ts"
 			],
@@ -384,8 +633,20 @@
 				"observers/OnUserDisconnect.ts"
 			],
 			[
+				"collection",
+				"classes/Collection.ts"
+			],
+			[
 				"player.ts",
 				"classes/Player.ts"
+			],
+			[
+				"gameobject",
+				"classes/GameObject.ts"
+			],
+			[
+				"main.ts",
+				"main/Main.ts"
 			],
 			[
 				"makema",
@@ -462,10 +723,6 @@
 			[
 				"gameroom.ts",
 				"classes/Gameroom.ts"
-			],
-			[
-				"collection",
-				"classes/Collection.ts"
 			],
 			[
 				"paylo",
