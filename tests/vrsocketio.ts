@@ -16,9 +16,15 @@ setTimeout(function(){
 				console.log("walk like alien 8)")
 				socketa.emit('action', {'action' : 'moveAlien', 'x' : 5.0, 'y' : 2.0, 'z' : 15.3 })
 
-				setInterval(function(){
+				setTimeout(function(){
 					console.log("get the tick")
 					socketa.emit('action', {'action':'tick'})
+
+					setTimeout(() => {
+						console.log("end the game")
+						socketa.emit('action', {'action':'gameOver','winner':'red'})
+					}, 1000)
+
 				}, 1000);
 			}, 1000)
 		}, 3000)

@@ -8,6 +8,7 @@ import {PlaceDrone} from "../actions/PlaceDrone"
 import {MoveAlien} from "../actions/MoveAlien"
 import {Tick} from "../actions/Tick"
 import {DestroyDrone} from "../actions/DestroyDrone"
+import {GameOver} from "../actions/GameOver"
 
 export let Actions = new Collection<any>("key", [
 
@@ -18,6 +19,7 @@ export let Actions = new Collection<any>("key", [
 	new MoveAlien(),
 	new Tick(),
 	new DestroyDrone(),
+	new GameOver(),
 	new Route()
 
 ]);
