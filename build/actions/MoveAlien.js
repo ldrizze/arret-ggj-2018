@@ -43,7 +43,7 @@ var MoveAlien = (function (_super) {
             return null;
         }
         if (payload.data && payload.data instanceof Object && payload.data.x && payload.data.y && payload.data.z) {
-            if (payload.user.id != payload.gameroom.host.id) {
+            if (payload.user.player.id != payload.gameroom.host.id) {
                 this.log.wrn("Payload user is not the host", payload);
                 return null;
             }
