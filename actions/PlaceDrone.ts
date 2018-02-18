@@ -25,7 +25,7 @@ export class PlaceDrone extends Action{
 	public run(payload:Payload):Payload{
 
 		/* Se todos os jogadores ainda não carregaram o game */
-		if(payload.gameroom && !payload.gameroom.allPlayersAreReady()){
+		if(payload.gameroom != null && !payload.gameroom.allPlayersAreReady()){
 			this.log.wrn("All players aren't ready, wait...")
 			return null;
 		}
