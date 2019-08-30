@@ -31,7 +31,6 @@ export class Tick extends Action{
 
 		/* Se o game está rolando */
 		if(!payload.gameroom || !payload.gameroom.gameStarted){
-			this.log.wrn("User", payload.user, "trying to place drone, but no game has started");
 			return null;
 		}
 
